@@ -32,3 +32,19 @@ body {
   background-color: #6a584c;
   color: white !important;
 }
+
+.main-footer {
+  background-color: #6a584c;
+  position: absolute;
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 20px 0px;
+  font-family: "Courier New";
+}
+
+.main-sidebar {
+  background-color: #81a774;
+  color: white;
+  font-family: "Courier New";
+}
