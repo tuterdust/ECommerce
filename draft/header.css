@@ -1,7 +1,34 @@
-#topnav {
-  background-color: green;
-  /*position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;*/
+body {
+  margin: 0px 0px;
+}
+
+.menu-navbar {
+  background-color: #6a584c;
+  overflow: hidden;
+}
+
+.menu-navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+  font-size: 24px;
+  font-family: "Courier New";
+  font-weight: bold;
+}
+
+.menu-navbar a:not(#main-brand-logo) {
+  float: right;
+}
+
+.menu-navbar a:not(#main-brand-logo):hover {
+  background-color: #422f22;
+  color: #a4ff70;
+}
+
+.menu-navbar a.active {
+  background-color: #6a584c;
+  color: white;
 }
