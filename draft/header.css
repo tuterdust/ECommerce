@@ -10,7 +10,7 @@ body {
 .menu-navbar a {
   float: left;
   display: block;
-  color: white;
+  color: white !important;
   text-align: center;
   padding: 20px 20px;
   text-decoration: none;
@@ -25,10 +25,10 @@ body {
 
 .menu-navbar a:not(#main-brand-logo):hover {
   background-color: #422f22;
-  color: #a4ff70;
+  color: #a4ff70 !important;
 }
 
 .menu-navbar a.active {
   background-color: #6a584c;
-  color: white;
+  color: white !important;
 }
