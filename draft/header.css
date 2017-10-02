@@ -1,9 +1,9 @@
-.topnav {
+.menu-navbar {
   background-color: #6a584c;
   overflow: hidden;
 }
 
-.topnav a {
+.menu-navbar a {
   float: left;
   display: block;
   color: white;
@@ -15,16 +15,16 @@
   font-weight: bold;
 }
 
-.topnav a:not(#main-brand-logo) {
+.menu-navbar a:not(#main-brand-logo) {
   float: right;
 }
 
-.topnav a:not(#main-brand-logo):hover {
+.menu-navbar a:not(#main-brand-logo):hover {
   background-color: #422f22;
   color: #a4ff70;
 }
 
-.topnav a.active {
+.menu-navbar a.active {
   background-color: #6a584c;
   color: white;
 }
