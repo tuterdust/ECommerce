@@ -20,8 +20,8 @@
 }
 
 .topnav a:not(#main-brand-logo):hover {
-  background-color: #81a774;
-  color: white;
+  background-color: #422f22;
+  color: #a4ff70;
 }
 
 .topnav a.active {
