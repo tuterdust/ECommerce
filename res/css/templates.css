@@ -56,13 +56,13 @@ body {
 }
 
 .main-footer {
-  background-color: #6a584c;
   position: absolute;
   width: 100%;
-  color: white;
+  color: #6a584c;
   text-align: center;
   padding: 20px 0px;
   font-family: "Courier New";
+  font-size: 10px;
 }
 
 div#content {
