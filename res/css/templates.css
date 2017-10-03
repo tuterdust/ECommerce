@@ -12,7 +12,7 @@ body {
   display: block;
   color: white !important;
   text-align: center;
-  padding: 20px 20px;
+  padding: 10px 15px;
   text-decoration: none;
   font-size: 24px;
   font-family: "Courier New";
@@ -60,9 +60,9 @@ body {
   width: 100%;
   color: #6a584c;
   text-align: center;
-  padding: 20px 0px;
+  padding: 10px 0px;
   font-family: "Courier New";
-  font-size: 10px;
+  font-size: 12px;
 }
 
 div#content {
