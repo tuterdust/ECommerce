@@ -7,3 +7,7 @@ from django.shortcuts import render, redirect
 def home(request):
     context = {}
     return render(request, 'home.html', context)
+
+def test(request):
+    context = {}
+    return render(request, 'test.html', context)
