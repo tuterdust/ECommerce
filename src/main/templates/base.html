@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Macchiato</title>
-    <link rel="stylesheet" type="text/css" href="../res/css/bootstrap/bootstrap-grid.css">
-    <link rel="stylesheet" type="text/css" href="../res/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../res/css/templates.css">
   </head>
   <body>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-grid.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/templates.css' %}" />
 
     <div class="menu-navbar" id="main-menu-navbar">
       <a id="main-brand-logo">Macchiato</a>
@@ -35,7 +36,8 @@
 
       <div class="col col-sm-11">
         <div id="content">
-          <!-- Content -->
+          {% block content %}
+          {% endblock %}
         </div>
       </div>
 
