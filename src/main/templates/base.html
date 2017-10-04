@@ -9,12 +9,14 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/templates.css' %}" />
   </head>
   <body>
-    {% include '_header.html' %}
-    <div class="row">
+    <div class="menu-navbar" id="main-menu-navbar">
+      {% include '_header.html' %}
+    </div>
+    <div class="row main-middle">
       <div class="main-sidebar col col-sm-1">
         {% include '_sidebar.html' %}
       </div>
-      <div class="col col-sm-11">
+      <div class="main-content col col-sm-11">
         <div id="content">
           {% block content %}
           {% endblock %}
@@ -22,6 +24,8 @@
       </div>
 
     </div>
-    {% include '_footer.html' %}
+    <div class="row main-footer">
+      {% include '_footer.html' %}
+    </div>
   </body>
 </html>

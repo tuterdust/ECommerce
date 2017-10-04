@@ -29,8 +29,10 @@ body {
 }
 
 .menu-navbar a.active {
-  background-color: #6a584c;
-  color: white !important;
+}
+
+.main-middle {
+  margin: 0px 0px !important
 }
 
 .main-sidebar {
@@ -41,14 +43,12 @@ body {
 
 .main-sidebar p {
   margin-top: 5px;
-  margin-left: 15px;
-  margin-right: 0px;
 }
 
 .main-sidebar a {
   display: block;
-  font-size: 16px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .main-sidebar a:hover {
@@ -60,11 +60,15 @@ body {
   width: 100%;
   color: #6a584c;
   text-align: center;
-  padding: 10px 0px;
   font-family: "Courier New";
-  font-size: 12px;
+  font-size: 16px;
+  margin: 0px 0px;
 }
 
-div#content {
-  padding: 10px 0px;
+.main-footer a:hover {
+  color: #81a774 !important;
+}
+
+.main-content {
+  padding: 5px 10px;
 }
