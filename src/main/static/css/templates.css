@@ -2,6 +2,8 @@ body {
   margin: 0px 0px;
 }
 
+/* HEADER */
+
 .menu-navbar {
   background-color: #6a584c;
   overflow: hidden;
@@ -29,9 +31,10 @@ body {
 }
 
 .menu-navbar a.active {
-  background-color: #6a584c;
-  color: white !important;
+
 }
+
+/* SIDE BAR */
 
 .main-sidebar {
   background-color: #81a774;
@@ -55,6 +58,8 @@ body {
   background-color: #422f22;
 }
 
+/* FOOTER */
+
 .main-footer {
   position: absolute;
   width: 100%;
@@ -62,7 +67,11 @@ body {
   text-align: center;
   padding: 10px 0px;
   font-family: "Courier New";
-  font-size: 12px;
+  font-size: 16px;
+}
+
+.main-footer a:hover {
+  color: #81a774 !important;
 }
 
 div#content {
