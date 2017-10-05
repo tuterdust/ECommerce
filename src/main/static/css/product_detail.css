@@ -1,0 +1,33 @@
+p {
+  word-wrap: break-word;
+  -moz-hyphens:auto;
+  -webkit-hyphens:auto;
+  -o-hyphens:auto;
+  hyphens:auto;
+}
+
+.container {
+  margin-left: 450px;
+  margin-top: 50px;
+}
+
+.product_price {
+  font-size: 25px;
+  color: #81a774
+}
+
+.product_name {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+br {
+  content: "";
+  margin: 2em;
+  display: block;
+  font-size: 24%;
+}
+
+.button_container {
+  margin-left: 300px;
+}
