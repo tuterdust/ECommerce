@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Hello! This is our test page!
+  Hello! This is our test page!<br />
+  Go to:
+  <ul>
+    <li><a href="{% url 'home' %}" >Home</a></li>
+    <li>Products</li>
+    <li>Cart</li>
+    <li>Contact</li>
+    <li>Guide</li>
+  </ul>
 {% endblock %}
