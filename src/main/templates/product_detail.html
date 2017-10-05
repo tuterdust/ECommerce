@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}" />
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+      <img src="{{ productPicture }}" width="250px" height="250px">
+      </div>
+      <div class="col-sm-4">
+      <p class="product_name">{{ productName }}</p><br>
+      <p class="product_price">{{ productPrice }} Baht</p>
+      {% if productStock > 0 %}
+        <p>Stock: {{ productStock }}</p><br>
+      {% else %}
+        <p>Out of stock</p>
+      {% endif %}
+      <p>{{ productDescription }}</p>
+      </div>
+    </div>
+    <br /><br />
+    <div class="button_container">
+      <a href="{% url 'products' %}" class="btn btn-danger">Back</a>
+    </div>
+  </div>
+{% endblock %}
