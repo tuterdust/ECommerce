@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Hello! This is products listing page.
+  <div class="row">
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-4">
+      {% include '_product_listing_grid.html' %}
+    </div>
+  </div>
 {% endblock %}
