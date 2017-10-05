@@ -32,27 +32,7 @@ body {
 }
 
 .main-middle {
-  margin-right: 0px !important
-}
-
-.main-sidebar {
-  background-color: #81a774;
-  color: white;
-  font-family: "Courier New";
-}
-
-.main-sidebar p {
-  margin-top: 5px;
-}
-
-.main-sidebar a {
-  display: block;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.main-sidebar a:hover {
-  background-color: #422f22;
+  margin: 0px 0px !important;
 }
 
 .main-footer {
@@ -69,6 +49,8 @@ body {
   color: #81a774 !important;
 }
 
+
 .main-content {
+  margin: 0px 0px !important;
   padding: 5px 10px;
 }
