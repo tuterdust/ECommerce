@@ -20,10 +20,9 @@ def product(request):
         "productID": 1,
         "productName": "Arabiga 1 pouch",
         "productPrice": 2000,
-        "productDescription": "BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_",
+        "productDescription": "BestCoffeeEver",
         "productPicture": static_path + "coffee_1.png",
         "productStock": 20
-
     }
     return render(request, 'product_detail.html', context)
 
