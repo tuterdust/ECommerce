@@ -21,11 +21,13 @@ from main import views as mainViews
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', mainViews.home, name='home'),
+
     url(r'^products/', mainViews.products, name='products'),
     url(r'^cart/', mainViews.cart, name='cart'),
     url(r'^about/', mainViews.about, name='about'),
     url(r'^contact/', mainViews.contact, name='contact'),
     url(r'^guide/', mainViews.guide, name='guide'),
+    url(r'^product/', mainViews.product, name='product'),
 
     url(r'^test/', mainViews.test, name='test'),
 ]

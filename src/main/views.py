@@ -13,13 +13,18 @@ def products(request):
     context = {}
     return render(request, 'products_listing.html', context)
 
+# Temporary: must required product id later
+def product(request):
+    context = {}
+    return render(request, 'product_detail.html', context)
+
 def cart(request):
     context = {}
-    return render(request, 'carts.html', context)
+    return render(request, 'cart.html', context)
 
 def about(request):
     context = {}
-    return render(request, 'about_us.html', context)
+    return render(request, 'about.html', context)
 
 def contact(request):
     context = {}
@@ -27,7 +32,7 @@ def contact(request):
 
 def guide(request):
     context = {}
-    return render(request, 'guide.html', conotext)
+    return render(request, 'guide.html', context)
 
 
 def test(request):
