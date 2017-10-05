@@ -8,12 +8,16 @@ body {
   text-align: center;
 }
 
+.menu-navbar #menu-tab {
+  padding: 0px 5px;
+}
+
 .menu-navbar a {
   float: left;
   display: block;
   color: white !important;
   text-align: center;
-  padding: 15px 5px;
+  padding: 15px 15px;
   text-decoration: none;
   font-size: 20px;
   font-family: "Courier New";
@@ -51,7 +55,6 @@ body {
 .main-footer a:hover {
   color: #81a774 !important;
 }
-
 
 .main-content {
   margin: 0px 0px !important;
