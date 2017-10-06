@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Cart page.
+<div class="panel panel-default form-control">
+  <div class="panel-heading"><h1>Cart</h1></div>
+  <table class="table">
+    <tr>
+      <th>Product</th>
+      <th>Amount</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>CoffeeA</td>
+      <td>1</td>
+      <td>500</td>
+      <td>
+        <div class="col col-sm-4 btn btn-danger btn-block" onclick="featureUnavailable()">
+        X
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>CoffeeB</td>
+      <td>1</td>
+      <td>400</td>
+      <td>
+        <div class="col col-sm-4 btn btn-danger btn-block" onclick="featureUnavailable()">
+        X
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
 {% endblock %}
