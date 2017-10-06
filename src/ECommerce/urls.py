@@ -28,6 +28,4 @@ urlpatterns = [
     url(r'^contact/', mainViews.contact, name='contact'),
     url(r'^guide/', mainViews.guide, name='guide'),
     url(r'^product/', mainViews.product, name='product'),
-
-    url(r'^test/', mainViews.test, name='test'),
 ]

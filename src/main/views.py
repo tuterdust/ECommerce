@@ -41,8 +41,3 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
-
-
-def test(request):
-    context = {}
-    return render(request, 'test.html', context)
