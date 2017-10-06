@@ -52,8 +52,19 @@ body {
   margin: 0px 0px;
 }
 
+.main-footer a {
+  padding: 0px 10px !important;
+}
+
 .main-footer a:hover {
   color: #81a774 !important;
+}
+
+.footer-left {
+  text-align: left !important;
+}
+.footer-right {
+  text-align: right;
 }
 
 .main-content {
