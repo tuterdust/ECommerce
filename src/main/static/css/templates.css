@@ -56,6 +56,11 @@ body {
   padding: 0px 10px !important;
 }
 
+.main-footer img {
+  height: 80%;
+  width: auto;
+}
+
 .main-footer a:hover {
   color: #81a774 !important;
 }
