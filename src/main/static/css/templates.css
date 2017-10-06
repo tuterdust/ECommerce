@@ -45,15 +45,32 @@ body {
 .main-footer {
   position: absolute;
   width: 100%;
-  color: #6a584c;
+  color: #777777;
   text-align: center;
   font-family: "Courier New";
   font-size: 16px;
   margin: 0px 0px;
 }
 
+.main-footer a {
+  padding: 0px 10px !important;
+  color: #6a584c;
+}
+
+.main-footer img {
+  height: 80%;
+  width: auto;
+}
+
 .main-footer a:hover {
   color: #81a774 !important;
+}
+
+.footer-left {
+  text-align: left !important;
+}
+.footer-right {
+  text-align: right;
 }
 
 .main-content {
