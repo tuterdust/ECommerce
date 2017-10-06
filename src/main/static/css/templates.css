@@ -51,6 +51,7 @@ body {
   font-family: "Courier New";
   font-size: 16px;
   margin: 0px 0px;
+  padding: 0% 10%;
 }
 
 .main-footer a {
@@ -76,6 +77,6 @@ body {
 
 .main-content {
   margin: 0px 0px !important;
-  padding: 20px 50px;
+  padding: 2.5% 10%;
   /*background-color: #F7C47E;*/
 }
