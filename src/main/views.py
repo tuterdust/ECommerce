@@ -41,3 +41,7 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
+
+def sign_in(request):
+    context = {}
+    return render(request, 'sign_in.html', context)
