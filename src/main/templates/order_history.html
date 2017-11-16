@@ -3,7 +3,7 @@
 
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/order_history.css' %}" />
-  <div class="container">
+
     <p class="title">Order History</p>
     <table class="table">
     <thead>
@@ -16,17 +16,16 @@
     </thead>
     <tbody>
       {% for order in user.orders %}
-      <tr>
-        <td>{{ order.orderID }}</td>
-        <td>{{ order.totalAmount }}</td>
-        <td>{{ order.date }}</td>
-        {% if order.status == 0 %}
-          <td><button type="button" class="btn disabled">unpaid</button></td>
-        {% elif order.status == 1 %}
-          <td><button type="button" class="btn btn-success disabled">paid</button></td>
-        {% endif %}
-      </tr>
+        <tr>
+          <td><a href="/order_detail/{{order.orderID}}">{{ order.orderID }}</a></td>
+          <td>{{ order.totalAmount }}</td>
+          <td>{{ order.date }}</td>
+          {% if order.status == 0 %}
+            <td><button type="button" class="btn disabled">unpaid</button></td>
+          {% elif order.status == 1 %}
+            <td><button type="button" class="btn btn-success disabled">paid</button></td>
+          {% endif %}
+        </tr>
       {% endfor %}
-  </table>
-  </div>
+    </table>
 {% endblock %}
