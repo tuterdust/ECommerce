@@ -41,7 +41,7 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
-  
+
 def profile(request):
     context = {}
     return render(request, 'profile.html', context)
@@ -67,7 +67,41 @@ def orderHistory(request):
     }
     context = {
         "user": {
-            "orders": [{"orderID": "001", "products": products, "totalAmount": 1000}]
+            "orders": [{"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0}]# 0 = unpaid, 1 = paid
+
         }
     }
     return render(request, 'order_history.html', context)
