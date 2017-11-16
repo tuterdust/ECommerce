@@ -3,14 +3,14 @@
 {% block content %}
 <div class="panel panel-primary">
   <div class="panel-heading panel-primary">
-    Order information
+    <h1>Order information</h1>
   </div>
   <div class="panel-body panel-primary">
     <table class="table">
       <tr class="row col-sm-12">
         <th class="col-sm-7">Product</th>
         <th class="col-sm-2">Amount</th>
-        <th class="col-sm-3">Price</th>
+        <th class="col-sm-3">Price per piece</th>
       </tr>
       <tr class="row col-sm-12">
         <td class="col-sm-7">CoffeeA</td>
@@ -30,8 +30,27 @@
   </div>
 </div>
 
-Payment method soon
+<div class="row col-sm-12">
+  <div class="col-sm-5"></div>
+  <div class="col-sm-2">
+    Credit Card Number<br />
+    <input type="text" class="form-control"/><br/>
+  </div>
+  <div class="col-sm-5"></div>
+</div>
+<div class="row col-sm-12">
+  <div class="col-sm-5"></div>
+  <div class="col-sm-1">
+    Exp. Date<br/>
+    <input type="text" class="form-control"/><br/>
+  </div>
+  <div class="col-sm-1">
+    CVC<br/>
+    <input type="text" class="form-control"/><br/>
+  </div>
+  <div class="col-sm-5"></div>
+</div>
 
 
-<a class="btn btn-success btn-block" onclick="featureUnavailable()">Confirm</a>
+<a class="btn btn-success btn-block btn-lg" onclick="featureUnavailable()">Confirm</a>
 {% endblock %}
