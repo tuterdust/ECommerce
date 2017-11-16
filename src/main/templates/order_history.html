@@ -21,9 +21,9 @@
         <td>{{ order.totalAmount }}</td>
         <td>{{ order.date }}</td>
         {% if order.status == 0 %}
-          <td><button type="button" class="btn disabled">unpaid</button></td>
+          <td><button type="button" class="btn disabled">UNPAID</button></td>
         {% elif order.status == 1 %}
-          <td><button type="button" class="btn btn-success disabled">paid</button></td>
+          <td><button type="button" class="btn btn-success disabled">PAID</button></td>
         {% endif %}
       </tr>
       {% endfor %}
