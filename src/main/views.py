@@ -41,11 +41,7 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> e4bcb70a67de105cbaf93089d53e4b1e46a25946
 def profile(request):
     context = {}
     return render(request, 'profile.html', context)
