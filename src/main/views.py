@@ -14,7 +14,7 @@ def products(request):
     return render(request, 'products_listing.html', context)
 
 # Temporary: must required product id later, put it in url too boi
-def product(request):
+def product_detail(request):
     static_path = "/static/img/"
     context = {
         "productID": 1,
@@ -46,8 +46,7 @@ def profile(request):
     context = {}
     return render(request, 'profile.html', context)
 
-def orderHistory(request):
-
+def order_history(request):
     products = {
         "product": [{
             "name": "coffee_1",
@@ -117,6 +116,14 @@ def sign_in(request):
 def sign_up(request):
     context = {}
     return render(request, 'sign_up.html', context)
+
+def checkout(request):
+    context = {}
+    return render(request, 'checkout.html', context)
+
+def payment(request):
+    context = {}
+    return render(request, 'payment.html', context)
 
 def order_detail(request, id):
     products = {

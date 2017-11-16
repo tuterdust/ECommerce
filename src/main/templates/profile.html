@@ -2,5 +2,35 @@
 {% load static %}
 
 {% block content %}
-  <h1>This is profile page </h1>
+  <h1>User profile</h1>
+
+  <table>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        <input type="text" class="form-control" value="Name Lastname" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Email
+      </td>
+      <td>
+        <input type="text" class="form-control" value="example@gmail.com" />
+      </td>
+    <tr>
+      <td>
+        Address
+      </td>
+      <td>
+        <input type="text" class="form-control" value="Somewhere in the world"/>
+      </td>
+    </tr>
+    <tr>
+      <td>All Orders</td>
+      <td><a href="{% url 'order_history' %}">Views all</a></td>
+    </tr>
+  </table>
 {% endblock %}
