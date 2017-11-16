@@ -45,3 +45,7 @@ def guide(request):
 def sign_in(request):
     context = {}
     return render(request, 'sign_in.html', context)
+
+def sign_up(request):
+    context = {}
+    return render(request, 'sign_up.html', context)
