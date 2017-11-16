@@ -46,7 +46,7 @@ def profile(request):
     context = {}
     return render(request, 'profile.html', context)
 
-def orderHistory(request):
+def order_history(request):
     products = {
         "product": [{
             "name": "coffee_1",
