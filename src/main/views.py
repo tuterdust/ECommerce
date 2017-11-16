@@ -49,3 +49,7 @@ def sign_in(request):
 def sign_up(request):
     context = {}
     return render(request, 'sign_up.html', context)
+
+def payment(request):
+    context = {}
+    return render(request, 'payment.html', context)

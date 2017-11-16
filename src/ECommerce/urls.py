@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^guide/', mainViews.guide, name='guide'),
     url(r'^product/', mainViews.product, name='product'),
     url(r'^sign_in/', mainViews.sign_in, name='sign_in'),
-    url(r'^sign_up/', mainViews.sign_up, name='sign_up')
+    url(r'^sign_up/', mainViews.sign_up, name='sign_up'),
+    url(r'^payment/', mainViews.payment, name='payment'),
 ]
