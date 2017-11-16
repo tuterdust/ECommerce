@@ -119,6 +119,29 @@ def sign_up(request):
     return render(request, 'sign_up.html', context)
 
 def order_detail(request, id):
+    products = {
+        "product": [{
+            "name": "coffee_1",
+            "price": 500,
+            "amount": 2
+        },
+        {
+            "name": "coffee_2",
+            "price": 1000,
+            "amount": 2
+        },
+        {
+            "name": "coffee_3",
+            "price": 500,
+            "amount": 2
+        }],
+        "totalAmount": 4000
+    }
     context = {
+        "orderID": "002",
+        "products": products,
+        "totalAmount": 1000,
+        "date": "xx/xx/xxxx",
+        "status": 0
     }
     return render(request, 'order_detail.html', context)
