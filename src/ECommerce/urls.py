@@ -38,6 +38,7 @@ urlpatterns = [
 
     # Order part
     url(r'^cart/', mainViews.cart, name='cart'),
+    url(r'^checkout/', mainViews.checkout, name='checkout'),
     url(r'^payment/', mainViews.payment, name='payment'),
     url(r'^order_detail/(?P<id>\w{0,9999})/$', mainViews.order_detail, name='order_detail'),
 

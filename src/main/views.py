@@ -117,6 +117,9 @@ def sign_up(request):
     context = {}
     return render(request, 'sign_up.html', context)
 
+def checkout(request):
+    context = {}
+    return render(request, 'checkout.html', context)
 
 def payment(request):
     context = {}
