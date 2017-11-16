@@ -16,17 +16,16 @@
     </thead>
     <tbody>
       {% for order in user.orders %}
-      <tr>
-        <td>{{ order.orderID }}</td>
-        <td>{{ order.totalAmount }}</td>
-        <td>{{ order.date }}</td>
-        {% if order.status == 0 %}
-          <td><button type="button" class="btn disabled">UNPAID</button></td>
-        {% elif order.status == 1 %}
-          <td><button type="button" class="btn btn-success disabled">PAID</button></td>
-        {% endif %}
-      </tr>
+        <tr>
+          <td><a href="/order_detail/{{order.orderID}}">{{ order.orderID }}</a></td>
+          <td>{{ order.totalAmount }}</td>
+          <td>{{ order.date }}</td>
+          {% if order.status == 0 %}
+            <td><button type="button" class="btn disabled">unpaid</button></td>
+          {% elif order.status == 1 %}
+            <td><button type="button" class="btn btn-success disabled">paid</button></td>
+          {% endif %}
+        </tr>
       {% endfor %}
-  </table>
-
+    </table>
 {% endblock %}

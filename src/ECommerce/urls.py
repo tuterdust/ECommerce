@@ -28,6 +28,7 @@ urlpatterns = [
     # User part
     url(r'^sign_in/', mainViews.sign_in, name='sign_in'),
     url(r'^sign_up/', mainViews.sign_up, name='sign_up'),
+
     url(r'^user/$', mainViews.profile, name='profile'),
     url(r'^user/orders/$', mainViews.order_history, name='order_history'),
 
@@ -35,7 +36,9 @@ urlpatterns = [
     url(r'^products/', mainViews.products, name='products'),
     url(r'^product/', mainViews.product, name='product'),
 
-    # Cart & Payment part
+    # Order part
     url(r'^cart/', mainViews.cart, name='cart'),
     url(r'^payment/', mainViews.payment, name='payment'),
+    url(r'^order_detail/(?P<id>\w{0,9999})/$', mainViews.order_detail, name='order_detail'),
+
 ]

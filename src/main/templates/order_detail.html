@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/order_detail.css' %}" />
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-11">
+        <p class="title">Order#{{orderID}}</p>
+      </div>
+      <div class="col-sm-1">
+        {% if status == 0 %}
+          <td><button type="button" class="btn disabled">unpaid</button></td>
+        {% elif status == 1 %}
+          <td><button type="button" class="btn btn-success disabled">paid</button></td>
+        {% endif %}
+      </div>
+    </div>
+    <hr>
+    <p class="date">Issued Date: {{date}}</p>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products.product %}
+        <tr>
+          <td>{{ product.name }}</a></td>
+          <td>{{ product.amount }}</td>
+          <td>{{ product.price }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <p class="totalAmount">Total price: {{ products.totalAmount }}</p>
+    <br>
+    <a href="{% url 'order_history' %}" class="btn btn-secondary">Back</a>
+  </div>
+{% endblock %}
