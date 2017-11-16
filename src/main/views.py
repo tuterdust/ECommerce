@@ -142,6 +142,6 @@ def order_detail(request, id):
         "products": products,
         "totalAmount": 1000,
         "date": "xx/xx/xxxx",
-        "status": 0
+        "status": 1
     }
     return render(request, 'order_detail.html', context)
