@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^contact/', mainViews.contact, name='contact'),
     url(r'^guide/', mainViews.guide, name='guide'),
     url(r'^product/', mainViews.product, name='product'),
+    url(r'^profile/', mainViews.profile, name='profile'),
+    url(r'^order_history/', mainViews.orderHistory, name='order_history'),
 
     url(r'^test/', mainViews.test, name='test'),
 ]

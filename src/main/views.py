@@ -43,6 +43,35 @@ def guide(request):
     context = {}
     return render(request, 'guide.html', context)
 
+def profile(request):
+    context = {}
+    return render(request, 'profile.html', context)
+
+def orderHistory(request):
+    products = {
+        "product": [{
+            "name": "coffee_1",
+            "price": 500,
+            "amount": 2
+        },
+        {
+            "name": "coffee_2",
+            "price": 1000,
+            "amount": 2
+        },
+        {
+            "name": "coffee_3",
+            "price": 500,
+            "amount": 2
+        }],
+        "totalAmount": 4000
+    }
+    context = {
+        "user": {
+            "orders": [{"orderID": "001", "products": products, "totalAmount": 1000}]
+        }
+    }
+    return render(request, 'order_history.html', context)
 
 def test(request):
     context = {}

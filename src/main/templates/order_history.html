@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/order_history.css' %}" />
+  <div class="container">
+    <h2>{{ user.orders.0 }}</h2>
+  </div>
+{% endblock %}
