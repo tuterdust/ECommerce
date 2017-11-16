@@ -7,23 +7,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-grid.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/templates.css' %}" />
+    <script>
+      function featureUnavailable() {
+        alert('Sorry! This feature is still unavailable');
+      }
+    </script>
   </head>
   <body>
     <div class="menu-navbar" id="main-menu-navbar">
       {% include '_header.html' %}
     </div>
-    <div class="row main-middle">
-      <div class="main-sidebar col col-sm-1">
-        {% include '_sidebar.html' %}
-      </div>
-      <div class="main-content col col-sm-11">
-        <div id="content">
-          {% block content %}
-          {% endblock %}
-        </div>
-      </div>
-
+    <div class="main-content">
+      {% block content %}
+      {% endblock %}
     </div>
+    <hr />
     <div class="row main-footer">
       {% include '_footer.html' %}
     </div>

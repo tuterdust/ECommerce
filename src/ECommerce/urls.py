@@ -21,7 +21,6 @@ from main import views as mainViews
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', mainViews.home, name='home'),
-
     url(r'^products/', mainViews.products, name='products'),
     url(r'^cart/', mainViews.cart, name='cart'),
     url(r'^about/', mainViews.about, name='about'),
@@ -30,6 +29,7 @@ urlpatterns = [
     url(r'^product/', mainViews.product, name='product'),
     url(r'^profile/$', mainViews.profile, name='profile'),
     url(r'^profile/order_history/$', mainViews.orderHistory, name='order_history'),
-
+    url(r'^sign_in/', mainViews.sign_in, name='sign_in'),
+    url(r'^sign_up/', mainViews.sign_up, name='sign_up')
     url(r'^test/', mainViews.test, name='test'),
 ]
