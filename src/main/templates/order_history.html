@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/order_history.css' %}" />
+  <div class="container">
+    <p class="title">Order History</p>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Order number</th>
+        <th>Total amount</th>
+        <th>Issued date</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in user.orders %}
+      <tr>
+        <td>{{ order.orderID }}</td>
+        <td>{{ order.totalAmount }}</td>
+        <td>{{ order.date }}</td>
+        {% if order.status == 0 %}
+          <td><button type="button" class="btn disabled">unpaid</button></td>
+        {% elif order.status == 1 %}
+          <td><button type="button" class="btn btn-success disabled">paid</button></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+  </table>
+  </div>
+{% endblock %}
