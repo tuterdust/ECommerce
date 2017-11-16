@@ -1,5 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Cart page.
+<div class="panel panel-default form-control">
+  <div class="panel-heading"><h1>Cart</h1></div>
+  <table class="table">
+    <tr class="row col-sm-12">
+      <th class="col-sm-5">Product</th>
+      <th class="col-sm-3">Amount</th>
+      <th class="col-sm-3">Price</th>
+      <th class="col-sm-1"></th>
+    </tr>
+    <tr class="row col-sm-12">
+      <td class="col-sm-5">CoffeeA</td>
+      <td class="col-sm-3">1</td>
+      <td class="col-sm-3">500</td>
+      <td class="col-sm-1">
+        <div class="col col-sm-4 btn btn-danger btn-block" onclick="featureUnavailable()">
+          &times;
+        </div>
+      </td>
+    </tr>
+    <tr class="row col-sm-12">
+      <td class="col-sm-5">CoffeeB</td>
+      <td class="col-sm-3">2</td>
+      <td class="col-sm-3">400</td>
+      <td class="col-sm-1">
+        <div class="col col-sm-4 btn btn-danger btn-block" onclick="featureUnavailable()">
+          &times;
+        </div>
+      </td>
+    </tr>
+    <tr class="row col-sm-12">
+      <td class="col-sm-8"><b>Total</b></td>
+      <td class="col-sm-3">1300</td>
+      <td class="col-sm-1">
+      </td>
+    </tr>
+  </table>
+  <a class="btn btn-success btn-block" onclick="featureUnavailable()">Checkout</a>
+</div>
 {% endblock %}

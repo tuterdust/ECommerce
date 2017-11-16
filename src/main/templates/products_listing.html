@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Hello! This is products listing page.
+  <h3><b>Products</b></h3>
+  <br />
+  <br />
+  <div class="row col-sm-12">
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+  </div>
+  <br />
+  <div class="row col-sm-12">
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+    <div class="col col-sm-3">
+      {% include '_product_listing_grid.html' %}
+    </div>
+  </div>
 {% endblock %}

@@ -20,10 +20,9 @@ def product(request):
         "productID": 1,
         "productName": "Arabiga 1 pouch",
         "productPrice": 2000,
-        "productDescription": "BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_BestCoffeeEver_",
+        "productDescription": "BestCoffeeEver",
         "productPicture": static_path + "coffee_1.png",
         "productStock": 20
-
     }
     return render(request, 'product_detail.html', context)
 
@@ -42,7 +41,7 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
-
+  
 def profile(request):
     context = {}
     return render(request, 'profile.html', context)
@@ -73,6 +72,10 @@ def orderHistory(request):
     }
     return render(request, 'order_history.html', context)
 
-def test(request):
+def sign_in(request):
     context = {}
-    return render(request, 'test.html', context)
+    return render(request, 'sign_in.html', context)
+
+def sign_up(request):
+    context = {}
+    return render(request, 'sign_up.html', context)
