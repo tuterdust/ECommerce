@@ -41,16 +41,13 @@ def contact(request):
 def guide(request):
     context = {}
     return render(request, 'guide.html', context)
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> e4bcb70a67de105cbaf93089d53e4b1e46a25946
 def profile(request):
     context = {}
     return render(request, 'profile.html', context)
 
 def orderHistory(request):
+
     products = {
         "product": [{
             "name": "coffee_1",
@@ -69,42 +66,45 @@ def orderHistory(request):
         }],
         "totalAmount": 4000
     }
+
+    orders = [{"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "002", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "003", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0}]# 0 = unpaid, 1 = paid
+
     context = {
         "user": {
-            "orders": [{"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0},
-            {"orderID": "001", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 0}]# 0 = unpaid, 1 = paid
+            "orders": orders
 
         }
     }
@@ -117,3 +117,8 @@ def sign_in(request):
 def sign_up(request):
     context = {}
     return render(request, 'sign_up.html', context)
+
+def order_detail(request, id):
+    context = {
+    }
+    return render(request, 'order_detail.html', context)
