@@ -31,5 +31,4 @@ urlpatterns = [
     url(r'^profile/order_history/$', mainViews.orderHistory, name='order_history'),
     url(r'^sign_in/', mainViews.sign_in, name='sign_in'),
     url(r'^sign_up/', mainViews.sign_up, name='sign_up')
-    url(r'^test/', mainViews.test, name='test'),
 ]
