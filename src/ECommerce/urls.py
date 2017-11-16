@@ -34,7 +34,7 @@ urlpatterns = [
 
     # Products part
     url(r'^products/', mainViews.products, name='products'),
-    url(r'^product/', mainViews.product, name='product'),
+    url(r'^product/', mainViews.product_detail, name='product_detail'),
 
     # Order part
     url(r'^cart/', mainViews.cart, name='cart'),

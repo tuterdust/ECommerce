@@ -14,7 +14,7 @@ def products(request):
     return render(request, 'products_listing.html', context)
 
 # Temporary: must required product id later, put it in url too boi
-def product(request):
+def product_detail(request):
     static_path = "/static/img/"
     context = {
         "productID": 1,
