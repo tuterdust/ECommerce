@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1><b>Checkout</b></h1>
+  <hr />
+  <br />
+  <div class="panel panel-default form-control">
+    <table class="table">
+      <tr class="row col-sm-12">
+        <th class="col-sm-8">Product</th>
+        <th class="col-sm-2">Amount</th>
+        <th class="col-sm-2">Price per piece</th>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-8">Coffee Robusta 1kg Bag</td>
+        <td class="col-sm-2">1</td>
+        <td class="col-sm-2">500</td>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-8">Balck Tea leaves 200g Bag</td>
+        <td class="col-sm-2">2</td>
+        <td class="col-sm-2">400</td>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-10"><b>Total</b></td>
+        <td class="col-sm-2">1300</td>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br/>
+  <a class="btn btn-success btn-block btn-lg" href="{% url 'payment' %}">Confirm</a>
+{% endblock %}
