@@ -10,7 +10,16 @@ def home(request):
     return render(request, 'home.html', context)
 
 def products(request):
-    context = {}
+    static_path = "/static/img/"
+    products = [{"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Robusta 1 pouch", "product_price": 4000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
+                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},]
+
+    context = {"products": products}
     return render(request, 'products_listing.html', context)
 
 # Temporary: must required product id later, put it in url too boi
