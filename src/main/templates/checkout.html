@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="panel panel-primary">
+  <div class="panel-heading panel-primary">
+    <h1>Order information</h1>
+  </div>
+  <div class="panel-body panel-primary">
+    <table class="table">
+      <tr class="row col-sm-12">
+        <th class="col-sm-7">Product</th>
+        <th class="col-sm-2">Amount</th>
+        <th class="col-sm-3">Price per piece</th>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-7">CoffeeA</td>
+        <td class="col-sm-2">1</td>
+        <td class="col-sm-3">500</td>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-7">CoffeeB</td>
+        <td class="col-sm-2">2</td>
+        <td class="col-sm-3">400</td>
+      </tr>
+      <tr class="row col-sm-12">
+        <td class="col-sm-9"><b>Total</b></td>
+        <td class="col-sm-3">1300</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<a class="btn btn-success btn-block btn-lg" href="{% url 'payment' %}">Confirm</a>
+{% endblock %}
