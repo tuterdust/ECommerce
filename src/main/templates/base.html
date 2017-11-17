@@ -6,12 +6,15 @@
     <title>Macchiato</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-grid.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/templates.css' %}" />
-    <script>
-      function featureUnavailable() {
-        alert('Sorry! This feature is still unavailable');
-      }
-    </script>
+    {% block extrascripts %}
+      <script>
+        function featureUnavailable() {
+          alert('Sorry! This feature is still unavailable');
+        }
+      </script>
+    {% endblock %}
   </head>
   <body>
     <div class="menu-navbar" id="main-menu-navbar">
