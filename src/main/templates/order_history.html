@@ -2,30 +2,32 @@
 {% load static %}
 
 {% block content %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/order_history.css' %}" />
-
-    <p class="title">Order History</p>
-    <table class="table">
-    <thead>
-      <tr>
-        <th>Order number</th>
-        <th>Total amount</th>
-        <th>Issued date</th>
-        <th>status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for order in user.orders %}
+  <h1><b>Order ID: {{ orderID }}</b></h1>
+  <hr />
+  <br />
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Order number</th>
+      <th>Total amount</th>
+      <th>Issued date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in user.orders %}
+      {% if order.status != 2 %}
         <tr>
           <td><a href="/order_detail/{{order.orderID}}">{{ order.orderID }}</a></td>
           <td>{{ order.totalAmount }}</td>
           <td>{{ order.date }}</td>
           {% if order.status == 0 %}
-            <td><button type="button" class="btn disabled">unpaid</button></td>
+            <td><h4><span class="badge badge-secondary">UNPAID</span></h4></td>
           {% elif order.status == 1 %}
-            <td><button type="button" class="btn btn-success disabled">paid</button></td>
+            <td><h4><span class="badge badge-success">PAID</span></h4></td>
           {% endif %}
         </tr>
-      {% endfor %}
-    </table>
+      {% endif %}
+    {% endfor %}
+  </table>
 {% endblock %}
