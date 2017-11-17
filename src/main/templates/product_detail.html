@@ -2,27 +2,37 @@
 {% load static %}
 
 {% block content %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/product_detail.css' %}" />
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3">
-      <img src="{{ productPicture }}" width="250px" height="250px">
-      </div>
-      <div class="col-sm-4">
-      <p class="product_name">{{ productName }}</p><br>
-      <p class="product_price">{{ productPrice }} Baht</p>
-      {% if productStock > 0 %}
-        <p>Stock: {{ productStock }}</p><br>
-      {% else %}
-        <p>Out of stock</p>
-      {% endif %}
-      <p>{{ productDescription }}</p>
-      </div>
+  <h1><b>Product : {{ productName }}</b></h1>
+  <hr />
+  <br />
+  <div class="row col-sm-12">
+    <div class="col-sm-6">
+      <right>
+        <img src="{{ productPicture }}" width="400px" height="400px">
+      </right>
     </div>
-    <br /><br />
-    <div class="button_container">
-      <a class="btn btn-success" onclick="featureUnavailable()">Add to cart</a>
-      <a href="{% url 'products' %}" class="btn btn-secondary">Back</a>
+    <div class="col-sm-6">
+      <h3>Price: {{ productPrice }} Baht</h3>
+      {% if productStock > 0 %}
+        <h3 class="text-success">Stock: {{ productStock }}</h3>
+        <br/>
+        <div class="row">
+          <div class="col-sm-2">
+            <input name="amount" value="1" type="text" class="form-control">
+          </div>
+          <div class="col-sm-4">
+            <a class="btn btn-success" onclick="featureUnavailable()">Add to cart</a>
+          </div>
+        </div>
+      {% else %}
+        <h3 class="text-danger">Out of stock</h3>
+      {% endif %}
+      <br />
+      <br />
+      <h5>{{ productDescription }}</h5>
     </div>
   </div>
+  <br />
+  <br/>
+  <a href="{% url 'products' %}" class="btn btn-secondary btn-block btn-lg">Back</a>
 {% endblock %}
