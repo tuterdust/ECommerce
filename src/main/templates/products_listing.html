@@ -4,33 +4,32 @@
   <h1><b>Products</b></h1>
   <hr />
   <br />
-  <div class="row col-sm-12">
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
+    <div class="row">
+      {% for p in products %}
+        <div class="col col-sm-3">
+          <center>
+            <img src="{{ p.product_img }}" width="250px" height="250px">
+            <br /><br />
+            <b>{{ p.product_name }}</b>
+            <br />
+            {{ p.product_price }} BAHT
+            <br />
+          </center>
+          <br />
+          <div class="row">
+            <div class="col col-sm-1">
+            </div>
+            <div class="col col-sm-5">
+              <a class="btn btn-info btn-block" href="{% url 'product_detail' %}">Details</a>
+            </div>
+            <div class="col col-sm-5">
+              <a class="btn btn-success btn-block" href="{% url 'cart' %}">Buy</a>
+            </div>
+            <div class="col col-sm-1">
+            </div>
+          </div>
+          <br /><br />
+        </div>
+      {% endfor %}
     </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-  </div>
-  <br />
-  <div class="row col-sm-12">
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-    <div class="col col-sm-3">
-      {% include '_product_listing_grid.html' %}
-    </div>
-  </div>
 {% endblock %}
