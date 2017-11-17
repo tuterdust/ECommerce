@@ -21,18 +21,20 @@ body {
   font-weight: bold;
 }
 
-.menu-navbar a:not(#main-brand-logo) {
+.menu-navbar a#menu-tab-left {
+  padding: 13px 13px;
+  margin: 20px 5px;
+}
+
+.menu-navbar a#menu-tab-right {
   float: right;
-  padding: 10px 10px;
+  padding: 13px 13px;
   margin: 20px 5px;
 }
 
 .menu-navbar a:not(#main-brand-logo):hover {
   background-color: #422f22;
   color: #a4ff70 !important;
-}
-
-.menu-navbar a.active {
 }
 
 .main-middle {
