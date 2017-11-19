@@ -18,4 +18,6 @@ class Product(models.Model):
 
 # TODO: model Order
 class Order(models.Model):
-    order_list = models.ForignKey(Product)
+    order_list = ArrayField(models.ForeignKey(Product))
+    amount = ArrayField(models.IntegerField())
+    # TODO: DateTimeField for date ordering
