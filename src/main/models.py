@@ -15,4 +15,7 @@ class Product(models.Model):
         return self.name
 
 # TODO: model User
+
 # TODO: model Order
+class Order(models.Model):
+    order_list = models.ForignKey(Product)
