@@ -20,4 +20,5 @@ class Product(models.Model):
 class Order(models.Model):
     order_list = ArrayField(models.ForeignKey(Product))
     amount = ArrayField(models.IntegerField())
+    date = IntegerField()
     # TODO: DateTimeField for date ordering
