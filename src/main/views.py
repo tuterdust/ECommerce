@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from main.models import Product
 
 def home(request):
     context = {}
@@ -10,21 +11,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 def products(request):
-    static_path = "/static/img/"
-    products = [{"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Robusta 1 pouch", "product_price": 4000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},
-                {"product_img": static_path + "coffee_1.png", "product_name": "Arabiga 1 pouch", "product_price": 2000},]
-
-    context = {"products": products}
+    products = Product.objects.all()
+    context = { "products": products }
     return render(request, 'products_listing.html', context)
 
 # Temporary: must required product id later, put it in url too boi
 def product_detail(request):
     static_path = "/static/img/"
+    img_url = "/static/img/coffee_1.png"
     context = {
         "productID": 1,
         "productName": "Arabiga 1 pouch",
