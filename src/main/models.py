@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from datetime import datetime
+# from datetime import datetime
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
+# from django.contrib.postgres.fields import ArrayField
 
 class Product(models.Model):
     name = models.CharField(max_length=100)         # Product name
@@ -15,8 +15,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# In developing    
-    
+# In developing
+
 # class Order(models.Model):
 #     order_list = ArrayField(models.ForeignKey(Product))
 #     amount = ArrayField(models.IntegerField())
