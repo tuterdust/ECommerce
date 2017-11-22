@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from main.models import Product
 
 def home(request):
@@ -10,24 +10,15 @@ def home(request):
     template = 'home.html'
     return render(request, 'home.html', context)
 
-def products(request):
+def product_detail(request, p_id):
+    product = get_object_or_404(Product, pk=p_id)
+    context = { "product": product }
+    return render(request, 'product_detail.html', context)
+
+def products_listing(request):
     products = Product.objects.all()
     context = { "products": products }
     return render(request, 'products_listing.html', context)
-
-# Temporary: must required product id later, put it in url too boi
-def product_detail(request):
-    static_path = "/static/img/"
-    img_url = "/static/img/coffee_1.png"
-    context = {
-        "productID": 1,
-        "productName": "Arabiga 1 pouch",
-        "productPrice": 2000,
-        "productDescription": "BestCoffeeEver",
-        "productPicture": static_path + "coffee_1.png",
-        "productStock": 20
-    }
-    return render(request, 'product_detail.html', context)
 
 def cart(request):
     context = {}
