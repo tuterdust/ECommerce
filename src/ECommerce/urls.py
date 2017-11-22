@@ -16,30 +16,23 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from main import views as mainViews
+from main import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', mainViews.home, name='home'),
-    url(r'^about/', mainViews.about, name='about'),
-    url(r'^contact/', mainViews.contact, name='contact'),
-    url(r'^guide/', mainViews.guide, name='guide'),
-
-    # User part
-    url(r'^sign_in/', mainViews.sign_in, name='sign_in'),
-    url(r'^sign_up/', mainViews.sign_up, name='sign_up'),
-
-    url(r'^user/$', mainViews.profile, name='profile'),
-    url(r'^user/orders/$', mainViews.order_history, name='order_history'),
-
-    # Products part
-    url(r'^products/', mainViews.products, name='products'),
-    url(r'^product/', mainViews.product_detail, name='product_detail'),
-
-    # Order part
-    url(r'^cart/', mainViews.cart, name='cart'),
-    url(r'^checkout/', mainViews.checkout, name='checkout'),
-    url(r'^payment/', mainViews.payment, name='payment'),
-    url(r'^order_detail/(?P<id>\w{0,9999})/$', mainViews.order_detail, name='order_detail'),
+    url(r'^$', views.home, name='home'),
+    url(r'^about/', views.about, name='about'),
+    url(r'^contact/', views.contact, name='contact'),
+    url(r'^guide/', views.guide, name='guide'),
+    url(r'^sign_in/', views.sign_in, name='sign_in'),
+    url(r'^sign_up/', views.sign_up, name='sign_up'),
+    url(r'^user/$', views.profile, name='profile'),
+    url(r'^user/orders/$', views.order_history, name='order_history'),
+    url(r'^products/', views.products_listing, name='products_listing'),
+    url(r'^product/(?P<p_id>[0-9]+)/', views.product_detail, name='product_detail'),
+    url(r'^cart/', views.cart, name='cart'),
+    url(r'^checkout/', views.checkout, name='checkout'),
+    url(r'^payment/', views.payment, name='payment'),
+    url(r'^order_detail/(?P<id>\w{0,9999})/$', views.order_detail, name='order_detail'),
 
 ]
