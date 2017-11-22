@@ -10,15 +10,15 @@ def home(request):
     template = 'home.html'
     return render(request, 'home.html', context)
 
-def products_listing(request):
-    products = Product.objects.all()
-    context = { "products": products }
-    return render(request, 'products_listing.html', context)
-
 def product_detail(request, p_id):
     product = get_object_or_404(Product, pk=p_id)
     context = { "product": product }
     return render(request, 'product_detail.html', context)
+
+def products_listing(request):
+    products = Product.objects.all()
+    context = { "products": products }
+    return render(request, 'products_listing.html', context)
 
 def cart(request):
     context = {}

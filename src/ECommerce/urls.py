@@ -24,19 +24,12 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^guide/', views.guide, name='guide'),
-
-    # User part
     url(r'^sign_in/', views.sign_in, name='sign_in'),
     url(r'^sign_up/', views.sign_up, name='sign_up'),
-
     url(r'^user/$', views.profile, name='profile'),
     url(r'^user/orders/$', views.order_history, name='order_history'),
-
-    # Products part
     url(r'^products/', views.products_listing, name='products_listing'),
     url(r'^product/(?P<p_id>[0-9]+)/', views.product_detail, name='product_detail'),
-
-    # Order part
     url(r'^cart/', views.cart, name='cart'),
     url(r'^checkout/', views.checkout, name='checkout'),
     url(r'^payment/', views.payment, name='payment'),
