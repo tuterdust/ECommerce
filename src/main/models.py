@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 # from datetime import datetime
 from django.db import models
 # from django.contrib.postgres.fields import ArrayField
-from django.core.validators import RegexValidator
+from django.core.validators import MinLengthValidator
 
 class Product(models.Model):
     name = models.CharField(max_length=100)         # Product name
@@ -25,10 +25,10 @@ class User(models.Model):
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
-    password = models.CharField(validators=[RegexValidator(regex='^.{8, }$', message='Length has to be 8 or more', code='nomatch')], max_length=25)
+    password = models.CharField(max_length=25, validators=[MinLengthValidator(4)])
     address = models.CharField(max_length=2000)
     # order = ArrayField(models.ForeignKey(Order))
     # cart_product = ArrayField(models.ForeignKey(Product))
     # cart_amount = ArrayField(models.IntegerField())
     def __str__(self):
-        return self.firstname
+        return self.firstname + " " + self.lastname
