@@ -3,7 +3,7 @@ body {
 }
 
 .menu-navbar {
-  background-color: #6a584c;
+  background-color: #5d4a40;
   overflow: hidden;
   text-align: center;
   padding: 0% 10%;
@@ -14,7 +14,7 @@ body {
   display: block;
   color: white !important;
   text-align: center;
-  padding: 15px 0px;
+  padding: 3px 0px;
   text-decoration: none;
   font-size: 20px;
   font-family: "Courier New";
@@ -22,14 +22,14 @@ body {
 }
 
 .menu-navbar a#menu-tab-left {
-  padding: 13px 13px;
-  margin: 20px 5px;
+  padding: 5px 10px;
+  margin: 16px 5px;
 }
 
 .menu-navbar a#menu-tab-right {
   float: right;
-  padding: 13px 13px;
-  margin: 20px 5px;
+  padding: 5px 10px;
+  margin: 16px 5px;
 }
 
 .menu-navbar a:not(#main-brand-logo):hover {
