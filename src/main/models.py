@@ -25,7 +25,7 @@ class User(models.Model):
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
-    password = models.CharField(max_length=25, validators=[MinLengthValidator(4)])
+    password = models.CharField(max_length=25, validators=[MinLengthValidator(8)])
     address = models.CharField(max_length=2000)
     # order = ArrayField(models.ForeignKey(Order))
     # cart_product = ArrayField(models.ForeignKey(Product))
