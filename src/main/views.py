@@ -74,14 +74,26 @@ def order_history(request):
     return render(request, 'order_history.html', context)
 
 def sign_in(request):
-    context = {}
-    return render(request, 'sign_in.html', context)
+    if request.method == "POST":
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            # TODO: Check correct signing in and make usr sign in
+            context = { "sign_in_complete": True }
+            return render(request, 'home.html', context)
+        else:
+            context = { "form": form, "error_input": True }
+            return render(request, 'sign_in.html', context)
+    else:
+        form = SignInForm()
+        context = { "form": form }
+        return render(request, 'sign_in.html', context)
 
 def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
             # TODO: Save new user
+            # Don't forget to check that email is used in other users or not.
             context = { "sign_up_complete": True }
             return render(request, 'home.html', context)
         else:

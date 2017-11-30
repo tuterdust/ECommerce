@@ -1,6 +1,10 @@
 from django import forms
 from django.core.validators import MinLengthValidator
 
+class SignInForm(forms.Form):
+    email = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=25, validators=[MinLengthValidator(8)])
+
 class SignUpForm(forms.Form):
     email = forms.CharField(max_length=50)
     password = forms.CharField(max_length=25, validators=[MinLengthValidator(8)])
