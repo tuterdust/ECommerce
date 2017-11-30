@@ -10,59 +10,59 @@ current_user = "tuter555awesome@gmail.com"
 
 def home(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     template = 'home.html'
     return render(request, 'home.html', context)
 
 def product_detail(request, p_id):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     product = get_object_or_404(Product, pk=p_id)
     context = { "product": product }
     return render(request, 'product_detail.html', context)
 
 def products_listing(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     products = Product.objects.all()
     context = { "products": products }
     return render(request, 'products_listing.html', context)
 
 def cart(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     user_incart = user.cart_items.all()
     context = { "incart": user_incart}
     return render(request, 'cart.html', context)
 
 def about(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'about.html', context)
 
 def contact(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'contact.html', context)
 
 def guide(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'guide.html', context)
 
 def profile(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = { "user": user}
     return render(request, 'profile.html', context)
 
 def order_history(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     products = {
         "product": [{
             "name": "coffee_1",
@@ -148,22 +148,21 @@ def sign_up(request):
 
 def checkout(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'checkout.html', context)
 
 def payment(request):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'payment.html', context)
 
 def order_detail(request, id):
     global current_user
-    user = User.objects.get(email="tuter555awesome@gmail.com")
+    user = User.objects.get(email=current_user)
     totalAmount = 0
     product_arr = []
-    selected_product_arr = []
     order = Order.objects.get(pk=id)
     selected_products = order.order_list.all()
     for p in selected_products:
