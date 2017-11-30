@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-# from datetime import datetime
+from django.utils import timezone
 from django.db import models
-# from django.contrib.postgres.fields import ArrayField
 from django.core.validators import MinLengthValidator
 
 class Product(models.Model):
@@ -16,10 +15,20 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# class Order(models.Model):
-#     order_list = ArrayField(models.ForeignKey(Product))
-#     amount = ArrayField(models.IntegerField())
-#     date = models.DateTimeField(default=datetime.now())
+# In developing
+
+class SelectedProduct(models.Model):
+    product_key = models.ForeignKey(Product)
+    amount = models.IntegerField(default=0)
+    def __str__(self):
+        product = Product.objects.get(pk=self.product_key.pk)
+        return "%s X %s" % (product.name, self.amount)
+
+class Order(models.Model):
+    order_list = models.ManyToManyField(SelectedProduct)
+    date = models.DateTimeField(default=timezone.now())
+    def __str__(self):
+        return "Order %s " % (self.pk)
 
 class User(models.Model):
     firstname = models.CharField(max_length=30)
@@ -27,8 +36,7 @@ class User(models.Model):
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=25, validators=[MinLengthValidator(8)])
     address = models.CharField(max_length=2000)
-    # order = ArrayField(models.ForeignKey(Order))
-    # cart_product = ArrayField(models.ForeignKey(Product))
-    # cart_amount = ArrayField(models.IntegerField())
+    order_history = models.ManyToManyField(Order)
+    cart_items = models.ManyToManyField(SelectedProduct)
     def __str__(self):
         return self.firstname + " " + self.lastname
