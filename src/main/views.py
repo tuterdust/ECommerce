@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from main.models import Product
+from .models import Product
+from forms import SignUpForm
 
 def home(request):
     context = {}
@@ -77,8 +78,12 @@ def sign_in(request):
     return render(request, 'sign_in.html', context)
 
 def sign_up(request):
-    context = {}
-    return render(request, 'sign_up.html', context)
+    if request.method == 'POST':
+        context = {}
+        return render(request, 'home.html', context)
+    else:
+        context = {}
+        return render(request, 'sign_up.html', context)
 
 def checkout(request):
     context = {}
