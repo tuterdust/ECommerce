@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Product
-from forms import SignUpForm
+from forms import SignInForm, SignUpForm
 
 def home(request):
     context = {}
@@ -81,7 +81,7 @@ def sign_in(request):
             context = { "sign_in_complete": True }
             return render(request, 'home.html', context)
         else:
-            context = { "form": form, "error_input": True }
+            context = { "form": form, "sign_in_error": True }
             return render(request, 'sign_in.html', context)
     else:
         form = SignInForm()
