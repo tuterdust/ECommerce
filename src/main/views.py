@@ -77,11 +77,21 @@ def sign_in(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
         if form.is_valid():
-            # TODO: Check correct signing in and make usr sign in
+            data = form.cleaned_data
+            email = data["email"]
+            password = data["password"]
+            user = User.objects.all().filter(email=email, password=password)
+            # TODO Bug: when get this user, it's just query set that cannot use any attributes, it will be error if call attributes
+            if user:
+                context = { "sign_in_complete": True }
+                return render(request, 'home.html', context)
+            else:
+                context = { "sign_in_error": "Wrong email or password" }
+                return render(request, 'sign_in.html', context)
             context = { "sign_in_complete": True }
             return render(request, 'home.html', context)
         else:
-            context = { "form": form, "sign_in_error": True }
+            context = { "form": form, "sign_in_error": "Wrong email or password" }
             return render(request, 'sign_in.html', context)
     else:
         form = SignInForm()
