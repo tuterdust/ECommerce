@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <center>
+    <h1><b>Sign out</b></h1>
+    <hr />
+    <br/>
+    <form method="POST" action="/sign_in/">
+      {% csrf_token %}
+      <p>Current User: {{ current_user.email }}</p>
+      <input type="submit" method="POST" action="/sign_in/" value="Sign out" class="btn btn-danger btn-block">
+    </form>
+  </center>
+{% endblock %}
