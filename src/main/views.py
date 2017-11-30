@@ -80,8 +80,8 @@ def sign_in(request):
             data = form.cleaned_data
             email = data["email"]
             password = data["password"]
-            user = User.objects.all().filter(email=email, password=password)
-            # TODO Bug: when get this user, it's just query set that cannot use any attributes, it will be error if call attributes
+            user = User.objects.all().get(email=email, password=password)
+            # TODO: Record user to logging in user
             if user:
                 context = { "sign_in_complete": True }
                 return render(request, 'home.html', context)
