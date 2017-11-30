@@ -74,6 +74,7 @@ class OrderTestCase(TestCase):
         test_selected_product_3 = SelectedProduct.objects.get(pk=test_order_1.order_list.all()[2].pk)
 
         self.assertEqual(test_order_1.date, curr_time)
+        self.assertEqual(test_order_1.status, 0)
         self.assertEqual(test_selected_product_1.amount, 3)
         self.assertEqual(test_selected_product_2.amount, 5)
         self.assertEqual(test_selected_product_3.amount, 2)
