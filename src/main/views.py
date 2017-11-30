@@ -39,6 +39,7 @@ def guide(request):
     return render(request, 'guide.html', context)
 
 def profile(request):
+    user = User.objects.get(email="tuter555awesome@gmail.com")
     context = { "user": user}
     return render(request, 'profile.html', context)
 

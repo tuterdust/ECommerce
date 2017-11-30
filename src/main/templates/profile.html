@@ -7,10 +7,19 @@
   <br />
   <div class="row col-sm-12">
     <div class="col-sm-2">
-      Name
+      First Name
     </div>
     <div  class="col-sm-10">
-      <input type="text" class="form-control" value="Name Lastname" />
+      <input type="text" class="form-control" value="{{ user.firstname }}" />
+    </div>
+  </div>
+  <br />
+  <div class="row col-sm-12">
+    <div class="col-sm-2">
+      Last Name
+    </div>
+    <div  class="col-sm-10">
+      <input type="text" class="form-control" value="{{ user.lastname }}" />
     </div>
   </div>
   <br />
@@ -19,7 +28,7 @@
       Email
     </div>
     <div  class="col-sm-10">
-      <input type="text" class="form-control" value="example@gmail.com" />
+      <input type="text" class="form-control" value="{{ user.email }}" />
     </div>
   </div>
   <br />
@@ -28,7 +37,7 @@
       Address
     </div>
     <div  class="col-sm-10">
-      <input type="text" class="form-control" value="Somewhere in the world"/>
+      <input type="text" class="form-control" value="{{ user.address }}"/>
     </div>
   </div>
   <br />
