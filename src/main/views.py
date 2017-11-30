@@ -119,7 +119,7 @@ def sign_up(request):
             u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
             u.save()
             context = { "sign_up_complete": True }
-            return render(request, 'home.html', context)
+            return render(request, 'sign_up.html', context)
         else:
             context = { "form": form, "sign_up_error": "Some input is not correct to requirement." }
             return render(request, 'sign_up.html', context)
