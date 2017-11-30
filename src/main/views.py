@@ -63,34 +63,17 @@ def profile(request):
 def order_history(request):
     global current_user
     user = User.objects.get(email=current_user)
-    products = {
-        "product": [{
-            "name": "coffee_1",
-            "price": 500,
-            "amount": 2
-        },
-        {
-            "name": "coffee_2",
-            "price": 1000,
-            "amount": 2
-        },
-        {
-            "name": "coffee_3",
-            "price": 500,
-            "amount": 2
-        }],
-        "totalAmount": 4000
-    }
-
-    orders = [{"orderID": "001", "products": products, "totalAmount": 4000, "date": "xx/xx/xxxx","status": 0},
-        {"orderID": "002", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
-        {"orderID": "003", "products": products, "totalAmount": 3500, "date": "xx/xx/xxxx","status": 1},
-        {"orderID": "003", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 2}]# 0 = unpaid, 1 = paid, 2 = on_cart
-
+    order_arr = []
+    for order in user.order_history.all():
+        selected_products = order.order_list.all()
+        totalAmount = 0
+        for p in selected_products:
+            product =  Product.objects.get(pk=p.product_key.pk)
+            totalAmount += p.amount * product.price
+        order_arr.append((order, totalAmount))
     context = {
-        "user": {
-            "orders": orders
-        }
+        "user": user,
+        "order_arr": order_arr
     }
     return render(request, 'order_history.html', context)
 
