@@ -27,6 +27,7 @@ class SelectedProduct(models.Model):
 class Order(models.Model):
     order_list = models.ManyToManyField(SelectedProduct)
     date = models.DateTimeField(default=timezone.now())
+    status = models.IntegerField(default=0)
     def __str__(self):
         return "Order %s " % (self.pk)
 
