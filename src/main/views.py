@@ -106,10 +106,8 @@ def sign_up(request):
             if same_email_user:
                 context = { "form": form, "sign_up_error": "This email has been used" }
                 return render(request, 'sign_up.html', context)
-            # TODO: Save new user
-            # Don't forget to check that email is used in other users or not.
-            # u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
-            # u.save()
+            u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
+            u.save()
             context = { "sign_up_complete": True }
             return render(request, 'home.html', context)
         else:
