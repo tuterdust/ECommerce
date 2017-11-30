@@ -17,7 +17,7 @@
     {% for order in order_arr %}
       {% if order.0.status != 2 %}
         <tr>
-          <td><a href="/order_detail/{{order.orderID}}">{{ order.0.pk }}</a></td>
+          <td><a href="/order_detail/{{order.0.pk}}">{{ order.0.pk }}</a></td>
           <td>{{ order.1 }}</td>
           <td>{{ order.0.date }}</td>
           {% if order.0.status == 0 %}
