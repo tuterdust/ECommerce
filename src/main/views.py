@@ -78,11 +78,17 @@ def sign_in(request):
     return render(request, 'sign_in.html', context)
 
 def sign_up(request):
-    if request.method == 'POST':
-        context = {}
-        return render(request, 'home.html', context)
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            context = {}
+            return render(request, 'home.html', context)
+        else:
+            context = { "form": form, "error_input": True }
+            return render(request, 'sign_up.html', context)
     else:
-        context = {}
+        form = SignUpForm()
+        context = { "form": form }
         return render(request, 'sign_up.html', context)
 
 def checkout(request):
