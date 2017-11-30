@@ -3,45 +3,66 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Product, User
+from .models import *
 from forms import SignInForm, SignUpForm
 
+current_user = "tuter555awesome@gmail.com"
+
 def home(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     template = 'home.html'
     return render(request, 'home.html', context)
 
 def product_detail(request, p_id):
+    global current_user
+    user = User.objects.get(email=current_user)
     product = get_object_or_404(Product, pk=p_id)
     context = { "product": product }
     return render(request, 'product_detail.html', context)
 
 def products_listing(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     products = Product.objects.all()
     context = { "products": products }
     return render(request, 'products_listing.html', context)
 
 def cart(request):
-    context = {}
+    global current_user
+    user = User.objects.get(email=current_user)
+    user_incart = user.cart_items.all()
+    context = { "incart": user_incart}
     return render(request, 'cart.html', context)
 
 def about(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'about.html', context)
 
 def contact(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'contact.html', context)
 
 def guide(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'guide.html', context)
 
 def profile(request):
-    context = {}
+    global current_user
+    user = User.objects.get(email=current_user)
+    context = { "user": user}
     return render(request, 'profile.html', context)
 
 def order_history(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     products = {
         "product": [{
             "name": "coffee_1",
@@ -126,36 +147,31 @@ def sign_up(request):
         return render(request, 'sign_up.html', context)
 
 def checkout(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'checkout.html', context)
 
 def payment(request):
+    global current_user
+    user = User.objects.get(email=current_user)
     context = {}
     return render(request, 'payment.html', context)
 
 def order_detail(request, id):
-    products = {
-        "product": [{
-            "name": "coffee_1",
-            "price": 500,
-            "amount": 2
-        },
-        {
-            "name": "coffee_2",
-            "price": 1000,
-            "amount": 2
-        },
-        {
-            "name": "coffee_3",
-            "price": 500,
-            "amount": 2
-        }],
-        "total_amount": 4000
-    }
+    global current_user
+    user = User.objects.get(email=current_user)
+    totalAmount = 0
+    product_arr = []
+    order = Order.objects.get(pk=id)
+    selected_products = order.order_list.all()
+    for p in selected_products:
+        product =  Product.objects.get(pk=p.product_key.pk)
+        product_arr.append((product, p.amount))
+        totalAmount += p.amount * product.price
     context = {
-        "orderID": "001",
-        "products": products,
-        "date": "xx/xx/xxxx",
-        "status": 0
+        "order": order,
+        "total_amount": totalAmount,
+        "p_arr": product_arr
     }
     return render(request, 'order_detail.html', context)
