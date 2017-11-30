@@ -81,7 +81,8 @@ def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            context = {}
+            # TODO: Save new user
+            context = { "sign_up_complete": True }
             return render(request, 'home.html', context)
         else:
             context = { "form": form, "error_input": True }
