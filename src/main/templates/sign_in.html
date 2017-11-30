@@ -1,29 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <center><b>
+  <center>
     <h1><b>Sign in</b></h1>
     <hr />
     <br/>
-
-    <table>
-      <tr>
-        <td>
-          <label>Email</label>
-          <input id="sign_in" name="username" type="text" class="form-control">
-        </td>
-      </tr>
-    </table>
-    <br />
-    <table>
-      <tr>
-        <td>
-          <label>Password</label>
-          <input id="sign_in" name="password" type="password" class="form-control">
-        </td>
-      </tr>
-    </table>
-    <br/>
-    <input type="submit" value="Sign in" class="btn btn-success btn-lg">
-  </b></center>
+    {% if sign_in_error %}
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 alert alert-danger" role="alert">
+          Email or password is wrong. Please try it again.
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    {% endif %}
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <form method="POST">
+          {% csrf_token %}
+          <table>
+            <tr>
+              <td>
+                <label for="id_email"><b>Email:</b></label>
+                <input type="text" name="email" required="" id="id_email" maxlength="50" class="form-control">
+              </td>
+            </tr>
+          </table>
+          <br />
+          <table>
+            <tr>
+              <td>
+                <label for="id_password"><b>Password:</b></label>
+                <input type="text" name="password" required="" id="id_password" maxlength="25" class="form-control">
+              </td>
+            </tr>
+          </table>
+          <br/>
+          <input type="submit" value="Sign in" class="btn btn-success btn-block">
+        </form>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </center>
 {% endblock %}
