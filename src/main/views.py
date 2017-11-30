@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Product
+from .models import Product, User
 from forms import SignInForm, SignUpForm
 
 def home(request):
@@ -92,12 +92,26 @@ def sign_up(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            # TODO: Save new user
-            # Don't forget to check that email is used in other users or not.
+            data = form.cleaned_data
+            email = data["email"]
+            password = data["password"]
+            confirm_password = data["confirm_password"]
+            firstname = data["firstname"]
+            lastname = data["lastname"]
+            address = data["address"]
+            if password != confirm_password:
+                context = { "form": form, "sign_up_error": "Wrong confirming password" }
+                return render(request, 'sign_up.html', context)
+            same_email_user = User.objects.filter(email=email)
+            if same_email_user:
+                context = { "form": form, "sign_up_error": "This email has been used" }
+                return render(request, 'sign_up.html', context)
+            u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
+            u.save()
             context = { "sign_up_complete": True }
             return render(request, 'home.html', context)
         else:
-            context = { "form": form, "error_input": True }
+            context = { "form": form, "sign_up_error": "Some input is not correct to requirement." }
             return render(request, 'sign_up.html', context)
     else:
         form = SignUpForm()
