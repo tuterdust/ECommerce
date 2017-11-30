@@ -81,15 +81,12 @@ def sign_in(request):
             email = data["email"]
             password = data["password"]
             user = User.objects.all().get(email=email, password=password)
-            # TODO: Record user to logging in user
             if user:
                 context = { "sign_in_complete": True }
                 return render(request, 'home.html', context)
             else:
                 context = { "sign_in_error": "Wrong email or password" }
                 return render(request, 'sign_in.html', context)
-            context = { "sign_in_complete": True }
-            return render(request, 'home.html', context)
         else:
             context = { "form": form, "sign_in_error": "Wrong email or password" }
             return render(request, 'sign_in.html', context)
