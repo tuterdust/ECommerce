@@ -57,7 +57,12 @@
       lastname = $('#lastname-input').val()
       email = $('#email-input').val()
       address = $('#address-input').val()
-      alert(firstname + " ssss" + lastname + " " + email + " " + address)
+      $.post('/user/', {
+        'firstname': firstname,
+        'lastname': lastname,
+        'email': email,
+        'address': address
+      })
     })
   </script>
 {% endblock %}

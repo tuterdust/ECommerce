@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
@@ -38,9 +39,22 @@ def guide(request):
     context = {}
     return render(request, 'guide.html', context)
 
+@csrf_exempt
 def profile(request):
     user = User.objects.get(email="tuter555awesome@gmail.com")
-    context = { "user": user}
+
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname', '')
+        lastname = request.POST.get('lastname', '')
+        email = request.POST.get('email', '')
+        address = request.POST.get('address', '')
+        user.firstname = firstname
+        user.lastname = lastname
+        user.email = email
+        user.address = address
+        user.save()
+
+    context = { "user": user }
     return render(request, 'profile.html', context)
 
 def order_history(request):
