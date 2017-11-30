@@ -14,6 +14,7 @@ class ProductTestCase(TestCase):
 
     def test_get_attributes(self):
         coffee1 = Product.objects.get(name="test_coffee_1")
+
         self.assertEqual(coffee1.name, 'test_coffee_1')
         self.assertEqual(coffee1.category, 'coffee')
         self.assertEqual(coffee1.price, 1000)
@@ -32,6 +33,7 @@ class SelectedProductTestCase(TestCase):
     def test_get_attributes(self):
         test_selected_coffee_1 = SelectedProduct.objects.get(pk=1)
         test_product_1 = Product.objects.get(pk=test_selected_coffee_1.product_key.pk)
+
         self.assertEqual(test_product_1.name, 'test_coffee_1')
         self.assertEqual(test_product_1.category, 'coffee')
         self.assertEqual(test_product_1.price, 1000)
@@ -70,13 +72,16 @@ class OrderTestCase(TestCase):
         test_selected_product_1 = SelectedProduct.objects.get(pk=test_order_1.order_list.all()[0].pk)
         test_selected_product_2 = SelectedProduct.objects.get(pk=test_order_1.order_list.all()[1].pk)
         test_selected_product_3 = SelectedProduct.objects.get(pk=test_order_1.order_list.all()[2].pk)
+
         self.assertEqual(test_order_1.date, curr_time)
         self.assertEqual(test_selected_product_1.amount, 3)
         self.assertEqual(test_selected_product_2.amount, 5)
         self.assertEqual(test_selected_product_3.amount, 2)
+
         test_product_1 = Product.objects.get(pk=test_selected_product_1.product_key.pk)
         test_product_2 = Product.objects.get(pk=test_selected_product_2.product_key.pk)
         test_product_3 = Product.objects.get(pk=test_selected_product_3.product_key.pk)
+
         self.assertEqual(test_product_1.name, 'test_coffee_1')
         self.assertEqual(test_product_2.name, 'test_coffee_2')
         self.assertEqual(test_product_3.name, 'test_tea_1')
@@ -116,10 +121,19 @@ class UserTestCase(TestCase):
 
     def test_get_attributes(self):
         test_user = User.objects.get(pk=1)
+
         self.assertEqual(test_user.firstname, 'KFC')
         self.assertEqual(test_user.lastname, 'Cookie')
         self.assertEqual(test_user.email, 'bnk48@gmail.com')
         self.assertEqual(test_user.password, 'koisurufortunecookie01')
         self.assertEqual(test_user.address, 'Bangkok')
+
         test_order_1 = Order.objects.get(pk=test_user.order_history.all()[0].pk)
         test_order_2 = Order.objects.get(pk=test_user.order_history.all()[1].pk)
+        self.assertEqual(str(test_order_1), 'Order 1 ')
+        self.assertEqual(str(test_order_2), 'Order 2 ')
+
+        test_incart_selected_product_1 = SelectedProduct.objects.get(pk=test_user.cart_items.all()[0].pk)
+        test_incart_selected_product_2 = SelectedProduct.objects.get(pk=test_user.cart_items.all()[1].pk)
+        self.assertEqual(str(test_incart_selected_product_1), 'test_coffee_1 X 5')
+        self.assertEqual(str(test_incart_selected_product_2), 'test_tea_1 X 3')
