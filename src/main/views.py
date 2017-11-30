@@ -77,11 +77,21 @@ def sign_in(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
         if form.is_valid():
-            # TODO: Check correct signing in and make usr sign in
+            data = form.cleaned_data
+            email = data["email"]
+            password = data["password"]
+            user = User.objects.all().get(email=email, password=password)
+            # TODO: Record user to logging in user
+            if user:
+                context = { "sign_in_complete": True }
+                return render(request, 'home.html', context)
+            else:
+                context = { "sign_in_error": "Wrong email or password" }
+                return render(request, 'sign_in.html', context)
             context = { "sign_in_complete": True }
             return render(request, 'home.html', context)
         else:
-            context = { "form": form, "sign_in_error": True }
+            context = { "form": form, "sign_in_error": "Wrong email or password" }
             return render(request, 'sign_in.html', context)
     else:
         form = SignInForm()
