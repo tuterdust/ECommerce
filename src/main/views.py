@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from main.models import Product
+from .models import Product, User
+from forms import SignInForm, SignUpForm
 
 def home(request):
     context = {}
@@ -73,12 +74,49 @@ def order_history(request):
     return render(request, 'order_history.html', context)
 
 def sign_in(request):
-    context = {}
-    return render(request, 'sign_in.html', context)
+    if request.method == "POST":
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            # TODO: Check correct signing in and make usr sign in
+            context = { "sign_in_complete": True }
+            return render(request, 'home.html', context)
+        else:
+            context = { "form": form, "sign_in_error": True }
+            return render(request, 'sign_in.html', context)
+    else:
+        form = SignInForm()
+        context = { "form": form }
+        return render(request, 'sign_in.html', context)
 
 def sign_up(request):
-    context = {}
-    return render(request, 'sign_up.html', context)
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            email = data["email"]
+            password = data["password"]
+            confirm_password = data["confirm_password"]
+            firstname = data["firstname"]
+            lastname = data["lastname"]
+            address = data["address"]
+            if password != confirm_password:
+                context = { "form": form, "sign_up_error": "Wrong confirming password" }
+                return render(request, 'sign_up.html', context)
+            same_email_user = User.objects.filter(email=email)
+            if same_email_user:
+                context = { "form": form, "sign_up_error": "This email has been used" }
+                return render(request, 'sign_up.html', context)
+            u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
+            u.save()
+            context = { "sign_up_complete": True }
+            return render(request, 'home.html', context)
+        else:
+            context = { "form": form, "sign_up_error": "Some input is not correct to requirement." }
+            return render(request, 'sign_up.html', context)
+    else:
+        form = SignUpForm()
+        context = { "form": form }
+        return render(request, 'sign_up.html', context)
 
 def checkout(request):
     context = {}

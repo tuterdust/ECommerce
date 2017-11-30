@@ -1,55 +1,77 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <center><b>
+  <center>
     <h1><b>Sign up</b></h1>
     <hr />
     <br/>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-3">
-        <table>
-          <tr>
-            <td>
-              <label>Email</label>
-              <input name="email" type="text" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>Password</label>
-              <input name="password" type="password" class="form-control">
-            </td>
-          </tr>
-        </table>
+    <form method="POST">
+      {% csrf_token %}
+      {% if sign_up_error %}
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6 alert alert-danger" role="alert">
+            {{ sign_up_error }}
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3">
+          <table>
+            <tr>
+              <td>
+                <label for="id_email"><b>Email:</b></label>
+                <input type="text" name="email" required="" id="id_email" maxlength="50" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="id_password"><b><br/ >Password:</b></label>
+                <input type="password" name="password" required="" id="id_password" maxlength="25" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="id_confirm_password"><b><br/ >Confirm password:</b></label>
+                <input type="password" name="confirm_password" required="" id="id_confirm_password" maxlength="25" class="form-control">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3">
+          <table>
+            <tr>
+              <td>
+                <label for="id_firstname"><b>Firstname:</b></label>
+                <input type="text" name="firstname" required="" id="id_firstname" maxlength="30" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="id_lastname"><b><br/ >Lastname:</b></label>
+                <input type="text" name="lastname" required="" id="id_lastname" maxlength="30" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="id_address"><b><br/ >Address:</b></label>
+                <input type="text" name="address" required="" id="id_address" maxlength="2000" class="form-control">
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-3"></div>
       </div>
-      <div class="col-sm-3">
-        <table>
-          <tr>
-            <td>
-              <label>Firstname</label>
-              <input name="firstname" type="text" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>Lastname</label>
-              <input name="lastname" type="text" class="form-control">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label>Address</label>
-              <input name="address" type="text" class="form-control">
-            </td>
-          </tr>
-        </table>
+      <br/>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <input type="submit" value="Submit" class="btn btn-success btn-block">
+        </div>
+        <div class="col-sm-4"></div>
       </div>
-      <div class="col-sm-3"></div>
-    </div>
-    <br/>
-    <input type="submit" value="Sign up" class="btn btn-success btn-lg">
-  </b></center>
+    </form>
+  </center>
 {% endblock %}
