@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from main.models import *
+from datetime import datetime
 
 class ProductTestCase(TestCase):
 
@@ -41,6 +42,8 @@ class SelectedProductTestCase(TestCase):
 
 class OrderTestCase(TestCase):
 
+    curr_time = ""
+
     def setUp(self):
         test_coffee_1 = Product.objects.create(name="test_coffee_1", category="coffee", price=1000, stock=20, description="desc1",
         img_url="https://i.pinimg.com/originals/d5/1e/ff/d51eff18270586b2b815543ffac32174.jpg")
@@ -55,8 +58,15 @@ class OrderTestCase(TestCase):
         test_selected_tea_1 = SelectedProduct.objects.create(product_key=test_tea_1, amount=2)
 
         test_order_1 = Order.objects.create()
-        test_order_1.order_list.add(test_coffee_1)
-        test_order_1.order_list.add(test_coffee_2)
-        test_order_1.order_list.add(test_tea_1)
+        global curr_time
+        curr_time = test_order_1.date
+        test_order_1.order_list.add(test_selected_coffee_1)
+        test_order_1.order_list.add(test_selected_coffee_2)
+        test_order_1.order_list.add(test_selected_tea_1)
 
-    # def test_get_attributes(self):
+    def test_get_attributes(self):
+        test_order_1 = Order.objects.get(pk=1)
+        test_selected_product_1 = Order.objects.filter(order_list__pk=1)
+        test_selected_product_2 = Order.objects.filter(order_list__pk=2)
+        test_selected_product_3 = Order.objects.filter(order_list__pk=3)
+        self.assertEqual(test_order_1.date, curr_time)
