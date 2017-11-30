@@ -7,11 +7,11 @@
     <br/>
     <form method="POST">
       {% csrf_token %}
-      {% if error_input %}
+      {% if sign_up_error %}
         <div class="row">
           <div class="col-sm-3"></div>
           <div class="col-sm-6 alert alert-danger" role="alert">
-            There's some required data not filled, filled it all again.
+            {{ sign_up_error }}
           </div>
           <div class="col-sm-3"></div>
         </div>
