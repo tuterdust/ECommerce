@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <center>
+    <h1><b>Sign out successfully</b></h1>
+    <hr />
+    <br/>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <br />
+        <a href="{% url 'home' %}" class="btn btn-primary btn-block">Back to homepage</a>
+        <a href="{% url 'sign_in' %}" class="btn btn-success btn-block">Sign in</a>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </center>
+{% endblock %}

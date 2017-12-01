@@ -2,9 +2,12 @@
 <a id="menu-tab-left" href="{% url 'home' %}">HOME</a>
 <a id="menu-tab-left" href="{% url 'products_listing' %}">PRODUCTS</a>
 <div id="menu-tab-right">
-    <a id="menu-tab-right">SIGN OUT</a>
+  {% if current_user.email == "default" %}
     <a id="menu-tab-right" href="{% url 'sign_up' %}">SIGN UP</a>
     <a id="menu-tab-right" href="{% url 'sign_in' %}">SIGN IN</a>
+  {% else %}
+    <a id="menu-tab-right" href="{% url 'sign_out' %}">SIGN OUT</a>
     <a id="menu-tab-right" href="{% url 'cart' %}">CART</a>
     <a id="menu-tab-right" href="{% url 'profile' %}">PROFILE</a>
+  {% endif %}
 </div>

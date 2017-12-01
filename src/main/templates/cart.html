@@ -12,29 +12,25 @@
         <th class="col-sm-2">Price per piece</th>
         <th class="col-sm-1"></th>
       </tr>
-      <tr class="row col-sm-12">
-        <td class="col-sm-7">Coffee Robusta 1kg Bag</td>
-        <td class="col-sm-2">1</td>
-        <td class="col-sm-2">500</td>
-        <td class="col-sm-1">
-          <div class="btn btn-danger btn-block" onclick="featureUnavailable()">
-            <b>&times;</b>
-          </div>
-        </td>
-      </tr>
-      <tr class="row col-sm-12">
-        <td class="col-sm-7">Balck Tea leaves 200g Bag</td>
-        <td class="col-sm-2">2</td>
-        <td class="col-sm-2">400</td>
-        <td class="col-sm-1">
-          <div class="btn btn-danger btn-block" onclick="featureUnavailable()">
-            <b>&times;</b>
-          </div>
-        </td>
-      </tr>
+      {% for product in incart %}
+        <tr class="row col-sm-12">
+          <td class="col-sm-7">{{ product.0.name}}</td>
+          <td class="col-sm-2">{{ product.1}}</td>
+          <td class="col-sm-2">{{ product.2 }}</td>
+          <td class="col-sm-1">
+          <form method="POST" action="/cart/">
+            {% csrf_token %}
+            <input type="hidden" name="selected_product" value="{{ product.3 }}">
+            <input type="submit" class="btn btn-danger btn-block">
+              <b>&times;</b>
+            </div>
+          </form>
+          </td>
+        </tr>
+      {% endfor %}
       <tr class="row col-sm-12">
         <td class="col-sm-9"><b>Total</b></td>
-        <td class="col-sm-2">1300</td>
+        <td class="col-sm-2">{{ total_amount }}</td>
         <td class="col-sm-1">
         </td>
       </tr>

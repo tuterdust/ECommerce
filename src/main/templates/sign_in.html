@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-sm-4"></div>
       <div class="col-sm-4">
-        <form method="POST">
+        <form method="POST" action="/sign_in/">
           {% csrf_token %}
           <table>
             <tr>
@@ -32,7 +32,7 @@
             <tr>
               <td>
                 <label for="id_password"><b>Password:</b></label>
-                <input type="text" name="password" required="" id="id_password" maxlength="25" class="form-control">
+                <input type="password" name="password" required="" id="id_password" maxlength="25" class="form-control">
               </td>
             </tr>
           </table>
