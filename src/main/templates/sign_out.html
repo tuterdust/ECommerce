@@ -2,13 +2,17 @@
 
 {% block content %}
   <center>
-    <h1><b>Sign out</b></h1>
+    <h1><b>Sign out successfully</b></h1>
     <hr />
     <br/>
-    <form method="POST" action="/sign_in/">
-      {% csrf_token %}
-      <p>Current User: {{ current_user.email }}</p>
-      <input type="submit" method="POST" action="/sign_in/" value="Sign out" class="btn btn-danger btn-block">
-    </form>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <br />
+        <a href="{% url 'home' %}" class="btn btn-primary btn-block">Back to homepage</a>
+        <a href="{% url 'sign_in' %}" class="btn btn-success btn-block">Sign in</a>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
   </center>
 {% endblock %}

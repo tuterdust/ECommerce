@@ -20,8 +20,13 @@
           <div class="col-sm-2">
             <input name="amount" value="1" type="text" class="form-control">
           </div>
+
           <div class="col-sm-4">
-            <a class="btn btn-success" href="{% url 'cart' %}">Add to cart</a>
+            {% if current_user.email == "default" %}
+              <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>
+            {% else %}
+              <a class="btn btn-success btn-block" href="{% url 'cart' %}">Add to cart</a>
+            {% endif%}
           </div>
         </div>
       {% else %}

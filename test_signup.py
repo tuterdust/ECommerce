@@ -47,7 +47,7 @@ class LoginTest(unittest.TestCase):
         btnsignin = WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_xpath("/html/body/div[2]/center/div/div[2]/form/input[2]"))
         btnsignin.click()
 
-        WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_xpath("/html/body/div[2]/div[1]/div[1]/img"))
+        WebDriverWait(driver, 10).until(lambda driver: driver.find_element_by_link_text("SIGN OUT"))
         
         time.sleep(8)
         
