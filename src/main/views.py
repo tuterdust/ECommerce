@@ -16,12 +16,32 @@ def home(request):
     template = 'home.html'
     return render(request, 'home.html', context)
 
+@csrf_exempt
 def product_detail(request, p_id):
     global current_user
     product = get_object_or_404(Product, pk=p_id)
-    form = ProductDetailForm()
-    context = { "current_user": current_user, "form": form, "product": product }
-    return render(request, 'product_detail.html', context)
+    if request.method == "POST":
+        form = ProductDetailForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            amount = data["amount"]
+            if amount < 1:
+                context = { "current_user": current_user, "add_error": "Invalid amount", "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+            elif amount > product.stock:
+                context = { "current_user": current_user, "add_error": "Stock is not enough to add.", "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+            else:
+                # TODO: Add product to cart
+                context = { "current_user": current_user, "add_success": True, "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+        else:
+            context = { "current_user": current_user, "add_error": "Some input is error, please try again.", "form": form, "product": product }
+            return render(request, 'product_detail.html', context)
+    else:
+        form = ProductDetailForm()
+        context = { "current_user": current_user, "form": form, "product": product }
+        return render(request, 'product_detail.html', context)
 
 def products_listing(request):
     global current_user

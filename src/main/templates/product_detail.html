@@ -13,6 +13,11 @@
       </right>
     </div>
     <div class="col-sm-6">
+      {% if add_error %}
+        <div class="col-sm-12 alert alert-danger" role="alert">
+          {{ add_error }}
+        </div>
+      {% endif %}
       <h3>Price: {{ product.price }} Baht</h3>
       {% if product.stock > 0 %}
         <h3 class="text-success"><span class="badge badge-success">In stock : {{ product.stock }}</span></h3>
