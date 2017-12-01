@@ -32,6 +32,7 @@ def product_detail(request, p_id):
                 context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "product": product }
                 return render(request, 'product_detail.html', context)
             else:
+                added_product = SelectedProduct(product_key=p_id, amount=amount)
                 # TODO: Add product to cart
                 context = { "current_user": current_user, "add_success": True, "form": form, "product": product }
                 return render(request, 'product_detail.html', context)
@@ -58,6 +59,7 @@ def products_listing(request):
                 context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "products": products }
                 return render(request, 'products_listing.html', context)
             else:
+                added_product = SelectedProduct(product_key=target_product.id, amount=amount)
                 # TODO: Add 1 product to cart
                 context = { "current_user": current_user, "add_success": True, "form": form, "products": products }
                 return render(request, 'products_listing.html', context)
