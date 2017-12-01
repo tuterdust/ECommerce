@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django import template
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
-from forms import SignInForm, SignUpForm
+from forms import *
 
 current_user = User.objects.get(email="default")
 
@@ -19,7 +19,8 @@ def home(request):
 def product_detail(request, p_id):
     global current_user
     product = get_object_or_404(Product, pk=p_id)
-    context = { "current_user": current_user, "product": product }
+    form = ProductDetailForm()
+    context = { "current_user": current_user, "form": form, "product": product }
     return render(request, 'product_detail.html', context)
 
 def products_listing(request):
