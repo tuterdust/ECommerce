@@ -9,24 +9,23 @@ from .models import *
 from forms import SignInForm, SignUpForm
 
 current_user = User.objects.get(email="default")
-current_user.save()
 
 def home(request):
     global current_user
-    context = {}
+    context = { "current_user": current_user }
     template = 'home.html'
     return render(request, 'home.html', context)
 
 def product_detail(request, p_id):
     global current_user
     product = get_object_or_404(Product, pk=p_id)
-    context = { "product": product }
+    context = { "current_user": current_user, "product": product }
     return render(request, 'product_detail.html', context)
 
 def products_listing(request):
     global current_user
     products = Product.objects.all()
-    context = { "products": products }
+    context = { "current_user": current_user, "products": products }
     return render(request, 'products_listing.html', context)
 
 def cart(request):
@@ -46,7 +45,7 @@ def cart(request):
         temp_amount = p.amount * product.price
         cart_arr.append((product, p.amount, temp_amount, p))
         totalAmount += p.amount * product.price
-    context = { "incart": cart_arr, "total_amount": totalAmount}
+    context = { "current_user": current_user, "incart": cart_arr, "total_amount": totalAmount}
     return render(request, 'cart.html', context)
 
 def about(request):
@@ -81,7 +80,7 @@ def profile(request):
             current_user.address = address
             current_user.save()
 
-    context = { "user": current_user }
+    context = { "current_user": current_user, "user": current_user }
     return render(request, 'profile.html', context)
 
 def order_history(request):
@@ -96,6 +95,7 @@ def order_history(request):
         order_arr.append((order, totalAmount))
 
     context = {
+        "current_user": current_user,
         "user": current_user,
         "order_arr": order_arr
     }
@@ -103,7 +103,6 @@ def order_history(request):
 
 def sign_in(request):
     global current_user
-
     if current_user.email != 'default':
         if request.method == "POST":
             current_user = User.objects.get(email="default")
@@ -124,22 +123,29 @@ def sign_in(request):
                     user = User.objects.get(email=email, password=password)
                 except User.DoesNotExist:
                     user = None
-                if user != None:
-                    context = { "sign_in_complete": True }
+                if user != None or email == "default":
                     current_user = user
+                    context = { "current_user": current_user, "sign_in_complete": True }
                     return render(request, 'home.html', context)
                 else:
-                    context = { "sign_in_error": "Wrong email or password" }
+                    context = { "current_user": current_user, "sign_in_error": "Wrong email or password" }
                     return render(request, 'sign_in.html', context)
             else:
-                context = { "form": form, "sign_in_error": "Wrong email or password" }
+                context = { "current_user": current_user, "form": form, "sign_in_error": "Wrong email or password" }
                 return render(request, 'sign_in.html', context)
         else:
             form = SignInForm()
-            context = { "form": form }
+            context = { "current_user": current_user, "form": form }
             return render(request, 'sign_in.html', context)
 
+def sign_out(request):
+    global current_user
+    current_user = User.objects.get(email="default")
+    context = { "current_user": current_user }
+    return render(request, 'sign_out.html', context)
+
 def sign_up(request):
+    global current_user
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -151,32 +157,32 @@ def sign_up(request):
             lastname = data["lastname"]
             address = data["address"]
             if password != confirm_password:
-                context = { "form": form, "sign_up_error": "Wrong confirming password" }
+                context = { "current_user": current_user, "form": form, "sign_up_error": "Wrong confirming password" }
                 return render(request, 'sign_up.html', context)
             same_email_user = User.objects.filter(email=email)
             if same_email_user:
-                context = { "form": form, "sign_up_error": "This email has been used" }
+                context = { "current_user": current_user, "form": form, "sign_up_error": "This email has been used" }
                 return render(request, 'sign_up.html', context)
             u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
             u.save()
-            context = { "sign_up_complete": True }
+            context = { "current_user": current_user, "sign_up_complete": True }
             return render(request, 'sign_up.html', context)
         else:
-            context = { "form": form, "sign_up_error": "Some input is not correct to requirement." }
+            context = { "current_user": current_user, "form": form, "sign_up_error": "Some input is not correct to requirement." }
             return render(request, 'sign_up.html', context)
     else:
         form = SignUpForm()
-        context = { "form": form }
+        context = { "current_user": current_user, "form": form }
         return render(request, 'sign_up.html', context)
 
 def checkout(request):
     global current_user
-    context = {}
+    context = { "current_user": current_user }
     return render(request, 'checkout.html', context)
 
 def payment(request):
     global current_user
-    context = {}
+    context = { "current_user": current_user }
     return render(request, 'payment.html', context)
 
 def order_detail(request, id):
@@ -190,6 +196,7 @@ def order_detail(request, id):
         product_arr.append((product, p.amount))
         totalAmount += p.amount * product.price
     context = {
+        "current_user": current_user,
         "order": order,
         "total_amount": totalAmount,
         "p_arr": product_arr

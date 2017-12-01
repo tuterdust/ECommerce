@@ -23,7 +23,9 @@
               <a class="btn btn-info btn-block" href="{% url 'product_detail' p.id %}">Details</a>
             </div>
             <div class="col col-sm-5">
-              {% if p.stock != 0 %}
+              {% if current_user.email == "default" %}
+                <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>
+              {% elif p.stock != 0 %}
                 <a class="btn btn-success btn-block" href="{% url 'cart' %}">Buy</a>
               {% else %}
                 <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>

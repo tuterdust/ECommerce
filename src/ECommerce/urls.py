@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^contact/', views.contact, name='contact'),
     url(r'^guide/', views.guide, name='guide'),
     url(r'^sign_in/', views.sign_in, name='sign_in'),
+    url(r'^sign_out/', views.sign_out, name='sign_out'),
     url(r'^sign_up/', views.sign_up, name='sign_up'),
     url(r'^user/$', views.profile, name='profile'),
     url(r'^user/orders/$', views.order_history, name='order_history'),
