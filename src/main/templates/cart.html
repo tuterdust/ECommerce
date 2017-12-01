@@ -37,5 +37,9 @@
     </table>
   </div>
   <br/>
-  <a class="btn btn-success btn-block btn-lg" href="{% url 'checkout' %}">Checkout</a>
+  {% if incart %}
+    <a class="btn btn-success btn-block btn-lg" href="{% url 'checkout' %}">Checkout</a>
+  {% else %}
+    <a class="btn btn-secondary disabled btn-block btn-lg" href="{% url 'checkout' %}">Checkout</a>
+  {% endif %}
 {% endblock %}
