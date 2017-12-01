@@ -18,6 +18,11 @@
           {{ add_error }}
         </div>
       {% endif %}
+      {% if add_success %}
+        <div class="col-sm-12 alert alert-success" role="alert">
+          Your cart has been updated.
+        </div>
+      {% endif %}
       <h3>Price: {{ product.price }} Baht</h3>
       {% if product.stock > 0 %}
         <h3 class="text-success"><span class="badge badge-success">In stock : {{ product.stock }}</span></h3>
@@ -26,6 +31,7 @@
           <div class="row">
             <div class="col-sm-3">
               <input type="number" name="amount" required="" id="id_amount" class="form-control">
+              <input type="hidden" name="product_id" value="{{ product.id }}" required="" id="id_amount">
             </div>
             <div class="col-sm-3">
               {% if current_user.email == "default" %}

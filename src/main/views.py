@@ -21,7 +21,7 @@ def product_detail(request, p_id):
     global current_user
     product = get_object_or_404(Product, pk=p_id)
     if request.method == "POST":
-        form = ProductDetailForm(request.POST)
+        form = AddToCartForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             amount = data["amount"]
@@ -29,7 +29,7 @@ def product_detail(request, p_id):
                 context = { "current_user": current_user, "add_error": "Invalid amount", "form": form, "product": product }
                 return render(request, 'product_detail.html', context)
             elif amount > product.stock:
-                context = { "current_user": current_user, "add_error": "Stock is not enough to add.", "form": form, "product": product }
+                context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "product": product }
                 return render(request, 'product_detail.html', context)
             else:
                 # TODO: Add product to cart
@@ -39,15 +39,31 @@ def product_detail(request, p_id):
             context = { "current_user": current_user, "add_error": "Some input is error, please try again.", "form": form, "product": product }
             return render(request, 'product_detail.html', context)
     else:
-        form = ProductDetailForm()
+        form = AddToCartForm()
         context = { "current_user": current_user, "form": form, "product": product }
         return render(request, 'product_detail.html', context)
 
+@csrf_exempt
 def products_listing(request):
     global current_user
     products = Product.objects.all()
-    context = { "current_user": current_user, "products": products }
-    return render(request, 'products_listing.html', context)
+    if request.method == "POST":
+        form = AddToCartForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            amount = data["amount"]
+            product_id = data["product_id"]
+            target_product = Product.objects.get(id=product_id)
+            if amount > target_product.stock:
+                context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "products": products }
+                return render(request, 'products_listing.html', context)
+            else:
+                # TODO: Add 1 product to cart
+                context = { "current_user": current_user, "add_success": True, "form": form, "products": products }
+                return render(request, 'products_listing.html', context)
+    else:
+        context = { "current_user": current_user, "products": products }
+        return render(request, 'products_listing.html', context)
 
 def cart(request):
     global current_user

@@ -1,8 +1,9 @@
 from django import forms
 from django.core.validators import MinLengthValidator
 
-class ProductDetailForm(forms.Form):
+class AddToCartForm(forms.Form):
     amount = forms.IntegerField()
+    product_id = forms.IntegerField()
 
 class SignInForm(forms.Form):
     email = forms.CharField(max_length=50)
