@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <ul>
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'products' %}">Products</a></li>
+    <li><a href="{% url 'product' %}">Product Id P001</a></li>
+    <li><a href="{% url 'cart' %}">Cart</a></li>
+    <li><a href="{% url 'about' %}">About us</a></li>
+    <li><a href="{% url 'contact' %}">Contact us</a></li>
+    <li><a href="{% url 'guide' %}">Guide</a></li>
+  </ul>
+{% endblock %}

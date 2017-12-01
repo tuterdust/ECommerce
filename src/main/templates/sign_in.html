@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4 alert alert-danger" role="alert">
-          {{ sign_in_error }}
+          Email or password is wrong. Please try it again.
         </div>
         <div class="col-sm-4"></div>
       </div>
@@ -17,7 +17,7 @@
     <div class="row">
       <div class="col-sm-4"></div>
       <div class="col-sm-4">
-        <form method="POST" action="/sign_in/">
+        <form method="POST">
           {% csrf_token %}
           <table>
             <tr>

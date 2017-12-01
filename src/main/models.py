@@ -27,7 +27,6 @@ class SelectedProduct(models.Model):
 class Order(models.Model):
     order_list = models.ManyToManyField(SelectedProduct)
     date = models.DateTimeField(default=timezone.now())
-    status = models.IntegerField(default=0)
     def __str__(self):
         return "Order %s " % (self.pk)
 
@@ -38,6 +37,6 @@ class User(models.Model):
     password = models.CharField(max_length=25, validators=[MinLengthValidator(8)])
     address = models.CharField(max_length=2000)
     order_history = models.ManyToManyField(Order)
-    cart_items = models.ManyToManyField(SelectedProduct, null="true", blank="true")
+    cart_items = models.ManyToManyField(SelectedProduct)
     def __str__(self):
         return self.firstname + " " + self.lastname

@@ -8,7 +8,7 @@ import unittest
 class LoginTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome("C:/Users/JBCOM/chromedriver_win32/chromedriver.exe")
+        self.driver = webdriver.Chrome("chromedriver.exe")
         self.driver.get("localhost:8000")
         
     def test_Login(self):

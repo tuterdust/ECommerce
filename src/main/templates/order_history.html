@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+  <h1><b>Order ID: {{ orderID }}</b></h1>
   <hr />
   <br />
   <table class="table">
@@ -14,15 +15,15 @@
     </tr>
   </thead>
   <tbody>
-    {% for order in order_arr %}
-      {% if order.0.status != 2 %}
+    {% for order in user.orders %}
+      {% if order.status != 2 %}
         <tr>
-          <td><a href="/order_detail/{{order.0.pk}}">{{ order.0.pk }}</a></td>
-          <td>{{ order.1 }}</td>
-          <td>{{ order.0.date }}</td>
-          {% if order.0.status == 0 %}
+          <td><a href="/order_detail/{{order.orderID}}">{{ order.orderID }}</a></td>
+          <td>{{ order.totalAmount }}</td>
+          <td>{{ order.date }}</td>
+          {% if order.status == 0 %}
             <td><h4><span class="badge badge-secondary">UNPAID</span></h4></td>
-          {% elif order.0.status == 1 %}
+          {% elif order.status == 1 %}
             <td><h4><span class="badge badge-success">PAID</span></h4></td>
           {% endif %}
         </tr>

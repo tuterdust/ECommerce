@@ -1,129 +1,92 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-from django import template
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import *
+from .models import Product, User
 from forms import SignInForm, SignUpForm
 
-current_user = User.objects.create(email="default")
-current_user.save()
-
 def home(request):
-    global current_user
     context = {}
     template = 'home.html'
     return render(request, 'home.html', context)
 
 def product_detail(request, p_id):
-    global current_user
     product = get_object_or_404(Product, pk=p_id)
     context = { "product": product }
     return render(request, 'product_detail.html', context)
 
 def products_listing(request):
-    global current_user
     products = Product.objects.all()
     context = { "products": products }
     return render(request, 'products_listing.html', context)
 
 def cart(request):
-    global current_user
-    user_incart = current_user.cart_items.all()
-    context = { "incart": user_incart}
+    context = {}
     return render(request, 'cart.html', context)
 
 def about(request):
-    global current_user
     context = {}
     return render(request, 'about.html', context)
 
 def contact(request):
-    global current_user
     context = {}
     return render(request, 'contact.html', context)
 
 def guide(request):
-    global current_user
     context = {}
     return render(request, 'guide.html', context)
 
-@csrf_exempt
 def profile(request):
-    global current_user
-
-    if request.method == 'POST':
-        old_email = current_user.email
-        firstname = request.POST.get('firstname', '')
-        lastname = request.POST.get('lastname', '')
-        email = request.POST.get('email', '')
-        address = request.POST.get('address', '')
-        if old_email != 'default':
-            current_user.firstname = firstname
-            current_user.lastname = lastname
-            current_user.email = email
-            current_user.address = address
-            current_user.save()
-
-    context = { "user": current_user }
+    context = {}
     return render(request, 'profile.html', context)
 
 def order_history(request):
-    global current_user
-    order_arr = []
-    for order in current_user.order_history.all():
-        selected_products = order.order_list.all()
-        totalAmount = 0
-        for p in selected_products:
-            product =  Product.objects.get(pk=p.product_key.pk)
-            totalAmount += p.amount * product.price
-        order_arr.append((order, totalAmount))
+    products = {
+        "product": [{
+            "name": "coffee_1",
+            "price": 500,
+            "amount": 2
+        },
+        {
+            "name": "coffee_2",
+            "price": 1000,
+            "amount": 2
+        },
+        {
+            "name": "coffee_3",
+            "price": 500,
+            "amount": 2
+        }],
+        "totalAmount": 4000
+    }
+
+    orders = [{"orderID": "001", "products": products, "totalAmount": 4000, "date": "xx/xx/xxxx","status": 0},
+        {"orderID": "002", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 1},
+        {"orderID": "003", "products": products, "totalAmount": 3500, "date": "xx/xx/xxxx","status": 1},
+        {"orderID": "003", "products": products, "totalAmount": 1000, "date": "xx/xx/xxxx","status": 2}]# 0 = unpaid, 1 = paid, 2 = on_cart
 
     context = {
-        "user": current_user,
-        "order_arr": order_arr
+        "user": {
+            "orders": orders
+        }
     }
     return render(request, 'order_history.html', context)
 
 def sign_in(request):
-    global current_user
-
-    if current_user.email != 'default':
-        if request.method == "POST":
-            current_user = User.objects.get(email="default")
-            current_user.save()
-            context = { "current_user": current_user }
-            return render(request, 'sign_in.html', context)
+    if request.method == "POST":
+        form = SignInForm(request.POST)
+        if form.is_valid():
+            # TODO: Check correct signing in and make usr sign in
+            context = { "sign_in_complete": True }
+            return render(request, 'home.html', context)
         else:
-            context = { "current_user": current_user }
-            return render(request, 'sign_out.html', context)
+            context = { "form": form, "sign_in_error": True }
+            return render(request, 'sign_in.html', context)
     else:
-        if request.method == "POST":
-            form = SignInForm(request.POST)
-            if form.is_valid():
-                data = form.cleaned_data
-                email = data["email"]
-                password = data["password"]
-                try:
-                    user = User.objects.get(email=email, password=password)
-                except User.DoesNotExist:
-                    user = None
-                if user != None:
-                    context = { "sign_in_complete": True }
-                    current_user = user
-                    return render(request, 'home.html', context)
-                else:
-                    context = { "sign_in_error": "Wrong email or password" }
-                    return render(request, 'sign_in.html', context)
-            else:
-                context = { "form": form, "sign_in_error": "Wrong email or password" }
-                return render(request, 'sign_in.html', context)
-        else:
-            form = SignInForm()
-            context = { "form": form }
-            return render(request, 'sign_in.html', context)
+        form = SignInForm()
+        context = { "form": form }
+        return render(request, 'sign_in.html', context)
 
 def sign_up(request):
     if request.method == "POST":
@@ -146,7 +109,7 @@ def sign_up(request):
             u = User(email=email, password=password, firstname=firstname, lastname=lastname, address=address)
             u.save()
             context = { "sign_up_complete": True }
-            return render(request, 'sign_up.html', context)
+            return render(request, 'home.html', context)
         else:
             context = { "form": form, "sign_up_error": "Some input is not correct to requirement." }
             return render(request, 'sign_up.html', context)
@@ -156,28 +119,36 @@ def sign_up(request):
         return render(request, 'sign_up.html', context)
 
 def checkout(request):
-    global current_user
     context = {}
     return render(request, 'checkout.html', context)
 
 def payment(request):
-    global current_user
     context = {}
     return render(request, 'payment.html', context)
 
 def order_detail(request, id):
-    global current_user
-    totalAmount = 0
-    product_arr = []
-    order = Order.objects.get(pk=id)
-    selected_products = order.order_list.all()
-    for p in selected_products:
-        product =  Product.objects.get(pk=p.product_key.pk)
-        product_arr.append((product, p.amount))
-        totalAmount += p.amount * product.price
+    products = {
+        "product": [{
+            "name": "coffee_1",
+            "price": 500,
+            "amount": 2
+        },
+        {
+            "name": "coffee_2",
+            "price": 1000,
+            "amount": 2
+        },
+        {
+            "name": "coffee_3",
+            "price": 500,
+            "amount": 2
+        }],
+        "total_amount": 4000
+    }
     context = {
-        "order": order,
-        "total_amount": totalAmount,
-        "p_arr": product_arr
+        "orderID": "001",
+        "products": products,
+        "date": "xx/xx/xxxx",
+        "status": 0
     }
     return render(request, 'order_detail.html', context)
