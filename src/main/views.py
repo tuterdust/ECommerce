@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from forms import SignInForm, SignUpForm
 
-current_user = User.objects.create(email="default")
+current_user = User.objects.get(email="default")
 current_user.save()
 
 def home(request):
@@ -31,8 +31,22 @@ def products_listing(request):
 
 def cart(request):
     global current_user
+
+    if request.method == "POST":
+        selected_product = request.POST.get('selected_product', '')
+        print(str(selected_product))
+        # current_user.cart_items.filter(pk=selected_product.pk).remove()
+
+    cart_arr = []
+    totalAmount = 0
     user_incart = current_user.cart_items.all()
-    context = { "incart": user_incart}
+    for p in user_incart:
+        temp_amount = 0
+        product =  Product.objects.get(pk=p.product_key.pk)
+        temp_amount = p.amount * product.price
+        cart_arr.append((product, p.amount, temp_amount, p))
+        totalAmount += p.amount * product.price
+    context = { "incart": cart_arr, "total_amount": totalAmount}
     return render(request, 'cart.html', context)
 
 def about(request):

@@ -37,7 +37,7 @@ class User(models.Model):
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=25, validators=[MinLengthValidator(8)])
     address = models.CharField(max_length=2000)
-    order_history = models.ManyToManyField(Order)
+    order_history = models.ManyToManyField(Order, null="true", blank="true")
     cart_items = models.ManyToManyField(SelectedProduct, null="true", blank="true")
     def __str__(self):
         return self.firstname + " " + self.lastname
