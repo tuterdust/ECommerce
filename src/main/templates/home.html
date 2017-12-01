@@ -26,13 +26,13 @@
   <br/>
   <div class="row col-sm-12">
     <div class="col-sm-4"  style="text-align:center;">
-      <div class="btn btn-info btn-block btn-lg">About us</div>
+      <a class="btn btn-info btn-block btn-lg" href="{% url 'about' %}">About us</a>
     </div>
     <div class="col-sm-4" style="text-align:center;">
-      <div class="btn btn-info btn-block btn-lg">View products</div>
+      <a class="btn btn-info btn-block btn-lg" href="{% url 'products_listing' %}">View products</a>
     </div>
     <div class="col-sm-4" style="text-align:center;">
-      <div class="btn btn-info btn-block btn-lg">How to buy our products</div>
+      <a class="btn btn-info btn-block btn-lg" href="{% url 'guide' %}">How to buy our products</a>
     </div>
   </div>
 {% endblock %}
