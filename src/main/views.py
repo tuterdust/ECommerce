@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
 from forms import SignInForm, SignUpForm
 
-current_user = User.objects.create(email="default")
+current_user = User.objects.get(email="default")
 current_user.save()
 
 def home(request):
