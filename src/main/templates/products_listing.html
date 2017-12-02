@@ -4,38 +4,52 @@
   <h1><b>Products</b></h1>
   <hr />
   <br />
-    <div class="row">
-      {% for p in products %}
-        <div class="col col-sm-3">
-          <center>
-            <img src="{{ p.img_url }}" width="250px" height="250px">
-            <br /><br />
-            <b>{{ p.name }}</b>
-            <br />
-            {{ p.price }} BAHT
-            <br />
-          </center>
-          <br />
-          <div class="row">
-            <div class="col col-sm-1">
-            </div>
-            <div class="col col-sm-5">
-              <a class="btn btn-info btn-block" href="{% url 'product_detail' p.id %}">Details</a>
-            </div>
-            <div class="col col-sm-5">
-              {% if current_user.email == "default" %}
-                <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>
-              {% elif p.stock != 0 %}
-                <a class="btn btn-success btn-block" href="{% url 'cart' %}">Buy</a>
-              {% else %}
-                <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>
-              {% endif %}
-            </div>
-            <div class="col col-sm-1">
-            </div>
-          </div>
-          <br /><br />
-        </div>
-      {% endfor %}
+  {% if add_error %}
+    <div class="col-sm-12 alert alert-danger" role="alert">
+      {{ add_error }}
     </div>
+  {% endif %}
+  {% if add_success %}
+    <div class="col-sm-12 alert alert-success" role="alert">
+      Your cart has been updated.
+    </div>
+  {% endif %}
+  <div class="row">
+    {% for p in products %}
+      <div class="col col-sm-3">
+        <center>
+          <img src="{{ p.img_url }}" width="250px" height="250px">
+          <br /><br />
+          <b>{{ p.name }}</b>
+          <br />
+          {{ p.price }} BAHT
+          <br />
+        </center>
+        <br />
+        <div class="row">
+          <div class="col col-sm-1">
+          </div>
+          <div class="col col-sm-5">
+            <a class="btn btn-info btn-block" href="{% url 'product_detail' p.id %}">Details</a>
+          </div>
+          <div class="col col-sm-5">
+            <form method="POST">
+              <input type="hidden" name="amount" value="1" required="" id="id_amount">
+              <input type="hidden" name="product_id" value="{{ p.id }}" required="" id="id_amount">
+              {% if current_user.email == "default" %}
+                <input type="submit" value="Buy" class="btn btn-secondary btn-block disabled">
+              {% elif p.stock != 0 %}
+                <input type="submit" value="Buy" class="btn btn-success btn-block">
+              {% else %}
+                <input type="submit" value="Buy" class="btn btn-secondary btn-block disabled">
+              {% endif %}
+            </form>
+          </div>
+          <div class="col col-sm-1">
+          </div>
+        </div>
+        <br /><br />
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

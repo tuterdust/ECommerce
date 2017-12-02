@@ -5,6 +5,7 @@
   <h1><b>Product : {{ product.name }}</b></h1>
   <hr />
   <br />
+  {% csrf_token %}
   <div class="row col-sm-12">
     <div class="col-sm-6">
       <right>
@@ -12,23 +13,35 @@
       </right>
     </div>
     <div class="col-sm-6">
+      {% if add_error %}
+        <div class="col-sm-12 alert alert-danger" role="alert">
+          {{ add_error }}
+        </div>
+      {% endif %}
+      {% if add_success %}
+        <div class="col-sm-12 alert alert-success" role="alert">
+          Your cart has been updated.
+        </div>
+      {% endif %}
       <h3>Price: {{ product.price }} Baht</h3>
       {% if product.stock > 0 %}
         <h3 class="text-success"><span class="badge badge-success">In stock : {{ product.stock }}</span></h3>
         <br/>
-        <div class="row">
-          <div class="col-sm-2">
-            <input name="amount" value="1" type="text" class="form-control">
+        <form method="POST">
+          <div class="row">
+            <div class="col-sm-3">
+              <input type="number" name="amount" required="" id="id_amount" class="form-control">
+              <input type="hidden" name="product_id" value="{{ product.id }}" required="" id="id_amount">
+            </div>
+            <div class="col-sm-3">
+              {% if current_user.email == "default" %}
+                <input type="submit" value="Buy" class="btn btn-secondary btn-block disabled">
+              {% else %}
+                <input type="submit" value="Buy" class="btn btn-success btn-block">
+              {% endif%}
+            </div>
           </div>
-
-          <div class="col-sm-4">
-            {% if current_user.email == "default" %}
-              <a class="btn btn-secondary btn-block disabled" href="{% url 'cart' %}">Buy</a>
-            {% else %}
-              <a class="btn btn-success btn-block" href="{% url 'cart' %}">Add to cart</a>
-            {% endif%}
-          </div>
-        </div>
+        </form>
       {% else %}
         <h3 class="text-danger"><span class="badge badge-danger">Out of stock</span></h3>
       {% endif %}

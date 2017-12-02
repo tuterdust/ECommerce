@@ -60,6 +60,3 @@ class LoginTest(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
-# Test Lists
-# 1) Check if CART button link works or not
-# 2) ...

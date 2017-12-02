@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django import template
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
-from forms import SignInForm, SignUpForm
+from forms import *
 
 current_user = User.objects.get(email="default")
 
@@ -16,17 +16,56 @@ def home(request):
     template = 'home.html'
     return render(request, 'home.html', context)
 
+@csrf_exempt
 def product_detail(request, p_id):
     global current_user
     product = get_object_or_404(Product, pk=p_id)
-    context = { "current_user": current_user, "product": product }
-    return render(request, 'product_detail.html', context)
+    if request.method == "POST":
+        form = AddToCartForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            amount = data["amount"]
+            if amount < 1:
+                context = { "current_user": current_user, "add_error": "Invalid amount", "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+            elif amount > product.stock:
+                context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+            else:
+                added_product = SelectedProduct(product_key=p_id, amount=amount)
+                # TODO: Add product to cart
+                context = { "current_user": current_user, "add_success": True, "form": form, "product": product }
+                return render(request, 'product_detail.html', context)
+        else:
+            context = { "current_user": current_user, "add_error": "Some input is error, please try again.", "form": form, "product": product }
+            return render(request, 'product_detail.html', context)
+    else:
+        form = AddToCartForm()
+        context = { "current_user": current_user, "form": form, "product": product }
+        return render(request, 'product_detail.html', context)
 
+@csrf_exempt
 def products_listing(request):
     global current_user
     products = Product.objects.all()
-    context = { "current_user": current_user, "products": products }
-    return render(request, 'products_listing.html', context)
+    if request.method == "POST":
+        form = AddToCartForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            amount = data["amount"]
+            product_id = data["product_id"]
+            target_product = Product.objects.get(id=product_id)
+            if amount > target_product.stock:
+                context = { "current_user": current_user, "add_error": "Stock is not enough.", "form": form, "products": products }
+                return render(request, 'products_listing.html', context)
+            else:
+                added_product = SelectedProduct(product_key=target_product.id, amount=amount)
+                # TODO: Add 1 product to cart
+                context = { "current_user": current_user, "add_success": True, "form": form, "products": products }
+                return render(request, 'products_listing.html', context)
+    else:
+        context = { "current_user": current_user, "products": products }
+        return render(request, 'products_listing.html', context)
 
 def cart(request):
     global current_user
