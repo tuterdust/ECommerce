@@ -132,7 +132,7 @@ pyzmq==16.0.2
 QtAwesome==0.4.4
 qtconsole==4.3.0
 QtPy==1.2.1
-requests==2.14.2
+requests==2.20.0
 rope==0.9.4
 scandir==1.5
 scikit-image==0.13.0
