@@ -18,7 +18,7 @@ class Product(models.Model):
 # In developing
 
 class SelectedProduct(models.Model):
-    product_key = models.ForeignKey(Product)
+    product_key = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.IntegerField(default=0)
     def __str__(self):
         product = Product.objects.get(pk=self.product_key.pk)

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django import template
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
-from forms import *
+from .forms import *
 
 current_user = User.objects.get(email="default")
 
