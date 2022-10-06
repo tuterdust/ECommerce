@@ -5,7 +5,6 @@
 Mady by Team SKE-Macchiato 
 
 
-
 ## Requirements
 
 - Python3
